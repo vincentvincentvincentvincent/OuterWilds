@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://db2i6xu1p4ijm"]
+
+[ext_resource type="Script" uid="uid://5baxj8s8ss4t" path="res://Spawnable_Objects/bulltet_pistol.gd" id="1_7h2wj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eske2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_eske2"]
+material = SubResource("StandardMaterial3D_eske2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3h4gd"]
+
+[node name="Bulltet_Pistol" type="Area3D" unique_id=1158862435]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_7h2wj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=12690679]
+mesh = SubResource("CapsuleMesh_eske2")
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=860780419]
+shape = SubResource("CapsuleShape3D_3h4gd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

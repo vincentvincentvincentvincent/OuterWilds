@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://p73ue0en0h5u"]
+
+[ext_resource type="Script" uid="uid://hfto5i5jr5et" path="res://Script/player.gd" id="1_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://c4hgfpq8kjott" path="res://Imports/Dev_CHaracter ANimations.png" id="2_4ntmi"]
+[ext_resource type="Script" uid="uid://7c8whdipgwn1" path="res://Script/state_machine.gd" id="3_5htga"]
+[ext_resource type="Script" uid="uid://cky1wt6anpkl0" path="res://Player/idle.gd" id="4_p5o4e"]
+[ext_resource type="Script" uid="uid://4qk2eqg1myfr" path="res://Player/jump.gd" id="5_gu6f8"]
+[ext_resource type="Script" uid="uid://drw3syti7kufc" path="res://Player/doublejump.gd" id="6_dkpta"]
+[ext_resource type="Script" uid="uid://c1giipthch1jt" path="res://Player/walk.gd" id="7_lfmf2"]
+[ext_resource type="Script" uid="uid://vr4d145d34fl" path="res://Player/dash.gd" id="8_pisgm"]
+[ext_resource type="Script" uid="uid://dd7s8jw5fkfe7" path="res://Player/crouch.gd" id="9_b1ygp"]
+[ext_resource type="Script" uid="uid://d3xhidsavwhgh" path="res://Player/attack.gd" id="10_o28un"]
+[ext_resource type="Script" uid="uid://btdjwg6jj55q" path="res://Player/recharge.gd" id="11_n471f"]
+[ext_resource type="Script" uid="uid://cq7xryvehksco" path="res://Player/tumble.gd" id="12_7emwf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ntmi"]
+radius = 0.6064453
+height = 1.2128906
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btcbx"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(0, 398, 128, 199)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwnis"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(256, 199, 128, 199)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k53q1"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(128, 199, 128, 199)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhl08"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(256, 0, 128, 199)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtle1"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(0, 0, 128, 199)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od3ui"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(128, 0, 128, 199)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00tjw"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(128, 398, 128, 199)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3vf3"]
+atlas = ExtResource("2_4ntmi")
+region = Rect2(256, 398, 128, 199)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5htga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btcbx")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwnis")
+}],
+"loop": true,
+"name": &"Crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k53q1")
+}],
+"loop": true,
+"name": &"Dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhl08")
+}],
+"loop": true,
+"name": &"Doublejump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtle1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od3ui")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00tjw")
+}],
+"loop": true,
+"name": &"Recharge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3vf3")
+}],
+"loop": true,
+"name": &"Tumble",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody3D" unique_id=1307754011]
+script = ExtResource("1_4ntmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=226256881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.022583008, 0)
+shape = SubResource("CapsuleShape3D_4ntmi")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1699834618]
+sprite_frames = SubResource("SpriteFrames_5htga")
+animation = &"Idle"
+
+[node name="State_Machine" type="Node" parent="." unique_id=991193160]
+script = ExtResource("3_5htga")
+
+[node name="Idle" type="Node" parent="State_Machine" unique_id=898596344]
+script = ExtResource("4_p5o4e")
+
+[node name="Jump" type="Node" parent="State_Machine" unique_id=88227156]
+script = ExtResource("5_gu6f8")
+
+[node name="Doublejump" type="Node" parent="State_Machine" unique_id=1841829893]
+script = ExtResource("6_dkpta")
+
+[node name="Walk" type="Node" parent="State_Machine" unique_id=1940895824]
+script = ExtResource("7_lfmf2")
+
+[node name="Dash" type="Node" parent="State_Machine" unique_id=1472026222]
+script = ExtResource("8_pisgm")
+
+[node name="Crouch" type="Node" parent="State_Machine" unique_id=586138483]
+script = ExtResource("9_b1ygp")
+
+[node name="Attack" type="Node" parent="State_Machine" unique_id=1753200024]
+script = ExtResource("10_o28un")
+
+[node name="Recharge" type="Node" parent="State_Machine" unique_id=2034176245]
+script = ExtResource("11_n471f")
+
+[node name="Tumble" type="Node" parent="State_Machine" unique_id=967565600]
+script = ExtResource("12_7emwf")

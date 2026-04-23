@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bees6uc2jxkck"]
+
+[ext_resource type="PackedScene" uid="uid://rndong4pradu" path="res://Player/player_character.tscn" id="1_clmtl"]
+[ext_resource type="Script" uid="uid://cu6o80s0hqh58" path="res://addons/camera3d_fighting_game/Camera3DFighting.gd" id="1_qt646"]
+[ext_resource type="PackedScene" uid="uid://db2i6xu1p4ijm" path="res://Spawnable_Objects/bulltet_pistol.tscn" id="3_firbl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_33mtj"]
+size = Vector3(46.575, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clmtl"]
+size = Vector3(46.6062, 1.2485352, 1)
+
+[sub_resource type="Curve" id="Curve_2tsxa"]
+_limits = [0.0, 30.0, 0.0, 60.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(60, 30), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_br1r7"]
+_limits = [3.0, 30.0, 0.0, 30.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(30, 30), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qt646"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_firbl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qt646"]
+size = Vector3(46.295288, 12.310547, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_firbl"]
+size = Vector3(1, 15.52832, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1494138214]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1140983915]
+mesh = SubResource("BoxMesh_33mtj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=886378113]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=498456476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016052246, -0.1237793, 0)
+shape = SubResource("BoxShape3D_clmtl")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=710571833 node_paths=PackedStringArray("PJ1", "PJ2")]
+transform = Transform3D(1, 0, 0, 0, 1, 6e-45, 0, -6e-45, 1, 4.162398, 7.999999, 16.999992)
+script = ExtResource("1_qt646")
+PJ1 = NodePath("../PlayerCharacter")
+PJ2 = NodePath("../PLACEHOLDERFOROTHERPLAYER")
+min_degree_threshold = 0.002
+max_distance_threshold = 10.0
+min_cam_distance = 10.0
+max_cam_distance = 17.0
+min_cam_height = 6.0
+max_cam_height = 8.0
+min_topdownview_deg = 0.0
+max_topdownview_deg = 0.0
+ZAxis_Rot_weigth = 0.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1165625152]
+transform = Transform3D(1, 0, 0, 0, 0.4787072, 0.8779747, 0, -0.8779747, 0.4787072, 0, 0, 0)
+
+[node name="PlayerCharacter" parent="." unique_id=307017552 instance=ExtResource("1_clmtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+desired_move_speed_curve = SubResource("Curve_2tsxa")
+in_air_move_speed_curve = SubResource("Curve_br1r7")
+
+[node name="PLACEHOLDERFOROTHERPLAYER" type="CharacterBody3D" parent="." unique_id=1291050422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3248, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PLACEHOLDERFOROTHERPLAYER" unique_id=173844868]
+mesh = SubResource("CylinderMesh_qt646")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PLACEHOLDERFOROTHERPLAYER" unique_id=257701173]
+shape = SubResource("CylinderShape3D_firbl")
+
+[node name="border" type="StaticBody3D" parent="." unique_id=681772395]
+
+[node name="World" type="CollisionShape3D" parent="border" unique_id=1110916533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11590576, 5.6552734, 1.1355896)
+shape = SubResource("BoxShape3D_qt646")
+
+[node name="World2" type="CollisionShape3D" parent="border" unique_id=339900824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21825027, 5.738777, -1.3165803)
+shape = SubResource("BoxShape3D_qt646")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="border" unique_id=183615331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.652746, 7.26416, 0)
+shape = SubResource("BoxShape3D_firbl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="border" unique_id=34725550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.736788, 7.26416, 0)
+shape = SubResource("BoxShape3D_firbl")
+
+[node name="Bulltet_Pistol" parent="." unique_id=729486747 instance=ExtResource("3_firbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1790204, 3.4967158, 0.07518196)
+
+[node name="Bulltet_Pistol2" parent="." unique_id=1158862435 instance=ExtResource("3_firbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4471593, 0.22397518, 0.089473724)
+
+[node name="Bulltet_Pistol3" parent="." unique_id=208687629 instance=ExtResource("3_firbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6752634, 2.026024, 0.11363387)

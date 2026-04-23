@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bees6uc2jxkck"]
+
+[ext_resource type="PackedScene" uid="uid://rndong4pradu" path="res://Player/player_character.tscn" id="1_clmtl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_33mtj"]
+size = Vector3(46.575, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clmtl"]
+size = Vector3(46.6062, 1.2485352, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1494138214]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1140983915]
+mesh = SubResource("BoxMesh_33mtj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=886378113]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=498456476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016052246, -0.1237793, 0)
+shape = SubResource("BoxShape3D_clmtl")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=710571833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0079956055, 1.8770092, 9.509896)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1165625152]
+transform = Transform3D(1, 0, 0, 0, 0.4787072, 0.8779747, 0, -0.8779747, 0.4787072, 0, 0, 0)
+
+[node name="PlayerCharacter" parent="." unique_id=307017552 instance=ExtResource("1_clmtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)

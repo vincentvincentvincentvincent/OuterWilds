@@ -1,0 +1,554 @@
+[gd_scene format=3 uid="uid://rndong4pradu"]
+
+[ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://Player/States/player_character_script.gd" id="1_3yrp4"]
+[ext_resource type="Script" uid="uid://sca7ypsol83f" path="res://Player/States/state_machine_script.gd" id="2_g1ssd"]
+[ext_resource type="Script" uid="uid://stil4xkf3tk0" path="res://Player/States/idle_state_script.gd" id="3_g61ia"]
+[ext_resource type="Script" uid="uid://bhoqhv7escpyx" path="res://Player/States/crouch_state_script.gd" id="4_cymb5"]
+[ext_resource type="Script" uid="uid://blt7dest23fk0" path="res://Player/States/walk_state_script.gd" id="5_b46m6"]
+[ext_resource type="Script" uid="uid://5gk47o641xgt" path="res://Player/States/run_state_script.gd" id="6_h1wib"]
+[ext_resource type="Script" uid="uid://dvu58wf01wils" path="res://Player/States/jump_state_script.gd" id="7_dl8ye"]
+[ext_resource type="Script" uid="uid://bh3rdvokmrar1" path="res://Player/States/inair_state_script.gd" id="8_nlpte"]
+[ext_resource type="Script" uid="uid://bxykx0r2xss40" path="res://Player/Weapons/States/Weapon_Pistol.gd" id="9_g1ssd"]
+[ext_resource type="Script" uid="uid://b5kq0o8fnias1" path="res://Player/States/stun_state.gd" id="10_b46m6"]
+[ext_resource type="Script" uid="uid://6c5lt0v6qg02" path="res://Player/dmgbox_head.gd" id="10_dl8ye"]
+[ext_resource type="Texture2D" uid="uid://dpj0l6nrwtgqy" path="res://icon.svg" id="10_g1ssd"]
+[ext_resource type="Script" uid="uid://dx02l6p6behb8" path="res://addons/PlayerCharacter/UI/hud_script.gd" id="10_hwwa7"]
+[ext_resource type="Script" uid="uid://cjwoig17gaf1l" path="res://Player/dmgbox_body.gd" id="11_dl8ye"]
+[ext_resource type="StyleBox" uid="uid://c50syhy1a4dmh" path="res://addons/PlayerCharacter/UI/player_character_ui_theme.tres" id="11_o6nip"]
+[ext_resource type="LabelSettings" uid="uid://d1rg1oruwidf" path="res://addons/PlayerCharacter/UI/label_font_setting.tres" id="12_8ugyt"]
+[ext_resource type="Script" uid="uid://clxq5aqau1p2j" path="res://Player/Weapons/States/state_machine_weapon.gd" id="15_h1wib"]
+[ext_resource type="Script" uid="uid://dvji730nr7u7c" path="res://Player/Weapons/States/weapon_ak_47.gd" id="16_b46m6"]
+
+[sub_resource type="Curve" id="Curve_2tsxa"]
+_limits = [0.0, 30.0, 0.0, 60.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(60, 30), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_br1r7"]
+_limits = [3.0, 30.0, 0.0, 30.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(30, 30), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_3yrp4"]
+script/source = "extends Node3D
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b46m6"]
+radius = 0.42260742
+height = 0.8616699
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5yjma"]
+height = 1.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dl8ye"]
+height = 1.532959
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bkys"]
+albedo_color = Color(0.196078, 0.223529, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_p2iaj"]
+
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=307017552 groups=["PlayerCharacter"]]
+collision_layer = 2
+collision_mask = 7
+floor_block_on_wall = false
+floor_max_angle = 1.13446
+floor_snap_length = 0.0
+platform_floor_layers = 4278190081
+script = ExtResource("1_3yrp4")
+desired_move_speed_curve = SubResource("Curve_2tsxa")
+in_air_move_speed_curve = SubResource("Curve_br1r7")
+bunny_hop_dms_incre = 0.2
+base_hitbox_head_height = 0.85
+base_model_height = 1.0
+jump_height = 4.0
+
+[node name="StateMachine" type="Node" parent="." unique_id=931857651 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_g1ssd")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=394410750]
+script = ExtResource("3_g61ia")
+metadata/_custom_type_script = "uid://stil4xkf3tk0"
+
+[node name="CrouchState" type="Node" parent="StateMachine" unique_id=476322435]
+script = ExtResource("4_cymb5")
+metadata/_custom_type_script = "uid://bhoqhv7escpyx"
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=1592098153]
+script = ExtResource("5_b46m6")
+metadata/_custom_type_script = "uid://blt7dest23fk0"
+
+[node name="RunState" type="Node" parent="StateMachine" unique_id=1366066256]
+script = ExtResource("6_h1wib")
+metadata/_custom_type_script = "uid://5gk47o641xgt"
+
+[node name="JumpState" type="Node" parent="StateMachine" unique_id=1931624113]
+script = ExtResource("7_dl8ye")
+metadata/_custom_type_script = "uid://dvu58wf01wils"
+
+[node name="InairState" type="Node" parent="StateMachine" unique_id=880216578]
+script = ExtResource("8_nlpte")
+metadata/_custom_type_script = "uid://bh3rdvokmrar1"
+
+[node name="StunState" type="Node" parent="StateMachine" unique_id=2059997209]
+script = ExtResource("10_b46m6")
+
+[node name="CameraHolder" type="Node3D" parent="." unique_id=1750117354]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.55, 0)
+script = SubResource("GDScript_3yrp4")
+
+[node name="Hitbox_head" type="CollisionShape3D" parent="." unique_id=599971163]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5408897, 0)
+shape = SubResource("CapsuleShape3D_b46m6")
+
+[node name="Dmgbox_head" type="Area3D" parent="." unique_id=781795598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5408897, 0)
+script = ExtResource("10_dl8ye")
+
+[node name="Dmgbox_head" type="CollisionShape3D" parent="Dmgbox_head" unique_id=1031629219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.028241575, 0)
+shape = SubResource("CapsuleShape3D_b46m6")
+
+[node name="Hitbox_body" type="CollisionShape3D" parent="." unique_id=475367]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29821777, 0)
+shape = SubResource("CapsuleShape3D_5yjma")
+
+[node name="Dmgbox_body" type="Area3D" parent="." unique_id=1409176799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1000337, 0)
+script = ExtResource("11_dl8ye")
+
+[node name="Dmgbox_body" type="CollisionShape3D" parent="Dmgbox_body" unique_id=338768553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116582155, 0)
+shape = SubResource("CapsuleShape3D_dl8ye")
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=2093114359]
+unique_name_in_owner = true
+visible = false
+layers = 2
+material_override = SubResource("StandardMaterial3D_6bkys")
+mesh = SubResource("CapsuleMesh_p2iaj")
+
+[node name="Sprite3D" type="Sprite3D" parent="Model" unique_id=343324775]
+transform = Transform3D(-0.006126009, 0, 0.99998134, 0, 1, 0, -0.99998134, 0, -0.006126009, 0.73723876, 0, 0.0025985837)
+texture = ExtResource("10_g1ssd")
+
+[node name="Raycasts" type="Node3D" parent="." unique_id=2079423533]
+
+[node name="CeilingCheck" type="RayCast3D" parent="Raycasts" unique_id=815494865]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.758088, 0)
+exclude_parent = false
+target_position = Vector3(0, 3, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="FloorCheck" type="RayCast3D" parent="Raycasts" unique_id=552044089]
+unique_name_in_owner = true
+exclude_parent = false
+target_position = Vector3(0, -3, 0)
+debug_shape_custom_color = Color(0, 0, 0.956863, 1)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=382546849]
+unique_name_in_owner = true
+script = ExtResource("10_hwwa7")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=2004601024]
+offset_right = 248.0
+offset_bottom = 252.0
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer" unique_id=231924140]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("11_o6nip")
+
+[node name="PlayCharInfos" type="HBoxContainer" parent="HUD/MarginContainer/PanelContainer" unique_id=1526751208]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos" unique_id=1766402346]
+layout_mode = 2
+
+[node name="CurrentStateLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1164258073]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Current state : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="DesiredMoveSpeedLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=432599912]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Desired move speed : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="VelocityLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1496362109]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Velocity : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="VelocityVectorLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1377180890]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Velocity vector : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="IsOnFloorLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1868360357]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Is on floor :"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="CeilingCheckLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=708687620]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ceiling raycast colliding :"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="JumpBufferLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=643555198]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Jump buffering  on :"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="CoyoteTimeLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=99478503]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Coyote time :"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="NbJumpsInAirAllowedLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=805513229]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Nb jumps in air allowed :"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="JumpCooldownLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1163255745]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Time before can jump again :"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="GravityInairLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=667484222]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Gravity Fall:"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="GravityInairLabel2" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=937262486]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Gravity Jump:"
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos" unique_id=1242408874]
+layout_mode = 2
+
+[node name="CurrentStateLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=644397935]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="DesiredMoveSpeedLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1370247928]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="VelocityLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=87827421]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="VelocityVectorLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=158882373]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="IsOnFloorLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=539885338]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="CeilingCheckLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1269415198]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="JumpBufferLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=891390731]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="CoyoteTimeLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1433869406]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="NbJumpsInAirAllowedLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1577784755]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="JumpCooldownLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1111413105]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="GravityAirLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1043366077]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="GravityJumpLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=2072016987]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "..................."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD" unique_id=1807707837]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -153.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer2" unique_id=1574288976]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("11_o6nip")
+
+[node name="PlayCharInfos2" type="HBoxContainer" parent="HUD/MarginContainer2/PanelContainer" unique_id=1976881281]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2" unique_id=690970496]
+layout_mode = 2
+
+[node name="FramesPerSecondLabel" type="Label" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=1338522606]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Frames per seconds : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2" unique_id=87285712]
+layout_mode = 2
+
+[node name="FramesPerSecondLabelText" type="Label" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=1352782966]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "....."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="HUD" unique_id=1602279140]
+offset_left = 9.0
+offset_top = 255.0
+offset_right = 220.0
+offset_bottom = 300.0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer3" unique_id=2143302667]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("11_o6nip")
+
+[node name="PlayCharInfos2" type="HBoxContainer" parent="HUD/MarginContainer3/PanelContainer" unique_id=59522909]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2" unique_id=805648462]
+layout_mode = 2
+
+[node name="AttackMode" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=1661659903]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Attack Mode : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="Recoil" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=102855907]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Recoil : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="Reload" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=2114146833]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Reloading : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="CanAttack" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=2086735493]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Can Attack : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="Health" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=461427826]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Health : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="TimesDied" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=1485477634]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Times Died : "
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2" unique_id=1073556393]
+layout_mode = 2
+
+[node name="AttackModeLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=1559606310]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "....."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="RecoilLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=277240741]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "....."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="ReloadingLabelText3" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=986042977]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "....."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="CanAttackLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=301692016]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "....."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="HealthLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=854262790]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "....."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="TimesDiedLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=1710282095]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "....."
+label_settings = ExtResource("12_8ugyt")
+vertical_alignment = 1
+
+[node name="StateMachine_Weapon" type="Node" parent="." unique_id=1446267504]
+unique_name_in_owner = true
+script = ExtResource("15_h1wib")
+
+[node name="Weapon_Pistol" type="Node" parent="StateMachine_Weapon" unique_id=1305408021]
+script = ExtResource("9_g1ssd")
+
+[node name="Weapon_Ak47" type="Node" parent="StateMachine_Weapon" unique_id=1110610163]
+script = ExtResource("16_b46m6")
