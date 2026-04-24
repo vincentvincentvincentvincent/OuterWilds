@@ -74,8 +74,9 @@ var coyote_jump_on: bool = false
 @export var crouch_action: StringName = "play_char_crouch_action"
 @export var jump_action: StringName = "play_char_jump_action"
 @export var attack_action: StringName = "play_char_attack_action"
+@export var stun_action: StringName = "play_char_stun_action"
 @onready var input_actions_list : Array[StringName] = [move_forward_action, move_backward_action, move_left_action, move_right_action, 
-run_action, crouch_action, jump_action, attack_action]
+run_action, crouch_action, jump_action, attack_action, stun_action]
 @export var check_on_ready_if_inputs_registered : bool = true
 var default_input_actions : Dictionary
 
@@ -116,10 +117,11 @@ func build_default_keybinding() -> void:
 		move_backward_action : [Key.KEY_D],
 		move_left_action : [Key.KEY_UNKNOWN,],
 		move_right_action : [Key.KEY_UNKNOWN],
-		run_action : [Key.KEY_Q],
+		run_action : [Key.KEY_UNKNOWN],
 		crouch_action : [Key.KEY_S],
 		jump_action : [Key.KEY_W],
 		attack_action : [Key.KEY_L],
+		stun_action : [Key.KEY_UNKNOWN],
 	}
 #double tap
 var hold_timer = 0.0
@@ -238,7 +240,7 @@ func tween_model_height(state_model_height : float) -> void:
 	model_tween.finished.connect(Callable(model_tween, "kill"))
 
 func look_direction():
-	if $".".is_on_floor():
+	if $".".is_on_floor() and can_attack == true:
 		if Input.is_action_just_pressed("play_char_move_forward_action"):
 			var rotate_forward_tween = create_tween()
 			rotate_forward_tween.tween_property(%Model, "rotation:y", rotation.y + deg_to_rad(-180), 0.3)

@@ -52,6 +52,8 @@ func input_management() -> void:
 		if play_char.jump_cooldown < 0.0:
 			transitioned.emit(self, "JumpState")
 			
+	if Input.is_action_just_pressed(play_char.stun_action):
+		transitioned.emit(self, "StunState")
 	if Input.is_action_just_pressed(play_char.crouch_action):
 		$"../..".fall_gravity = (-6.0 * play_char.jump_height) / (play_char.jump_time_to_fall * play_char.jump_time_to_fall)
 #(-2.0 * jump_height) / (jump_time_to_fall * jump_time_to_fall)

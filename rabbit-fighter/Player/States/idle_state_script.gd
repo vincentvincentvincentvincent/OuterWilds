@@ -62,6 +62,8 @@ func input_management():
 		if play_char.walk_or_run == "WalkState": play_char.walk_or_run = "RunState"
 		elif play_char.walk_or_run == "RunState": play_char.walk_or_run = "WalkState"
 		
+	if Input.is_action_just_pressed(play_char.stun_action):
+		transitioned.emit(self, "StunState")
 func move(delta : float):
 	#manage the character movement
 	

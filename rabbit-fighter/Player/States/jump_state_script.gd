@@ -47,6 +47,9 @@ func input_management() -> void:
 			
 	if Input.is_action_just_pressed(play_char.crouch_action):
 		$"../..".fall_gravity = (-6.0 * play_char.jump_height) / (play_char.jump_time_to_fall * play_char.jump_time_to_fall)
+		
+	if Input.is_action_just_pressed(play_char.stun_action):
+		transitioned.emit(self, "StunState")
 func move(delta : float) -> void:
 	play_char.input_direction = Input.get_vector(play_char.move_left_action, play_char.move_right_action, play_char.move_forward_action, play_char.move_backward_action)
 	play_char.move_direction = (play_char.cam_holder.global_basis * Vector3(play_char.input_direction.x, 0.0, play_char.input_direction.y)).normalized()

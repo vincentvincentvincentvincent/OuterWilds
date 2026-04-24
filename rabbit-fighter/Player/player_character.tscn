@@ -58,10 +58,20 @@ platform_floor_layers = 4278190081
 script = ExtResource("1_3yrp4")
 desired_move_speed_curve = SubResource("Curve_2tsxa")
 in_air_move_speed_curve = SubResource("Curve_br1r7")
-bunny_hop_dms_incre = 0.2
+bunny_hop_dms_incre = 0.0
 base_hitbox_head_height = 0.85
 base_model_height = 1.0
 jump_height = 4.0
+
+[node name="StateMachine_Weapon" type="Node" parent="." unique_id=1446267504]
+unique_name_in_owner = true
+script = ExtResource("15_h1wib")
+
+[node name="Weapon_Pistol" type="Node" parent="StateMachine_Weapon" unique_id=1305408021]
+script = ExtResource("9_g1ssd")
+
+[node name="Weapon_Ak47" type="Node" parent="StateMachine_Weapon" unique_id=1110610163]
+script = ExtResource("16_b46m6")
 
 [node name="StateMachine" type="Node" parent="." unique_id=931857651 node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
@@ -128,7 +138,6 @@ shape = SubResource("CapsuleShape3D_dl8ye")
 
 [node name="Model" type="MeshInstance3D" parent="." unique_id=2093114359]
 unique_name_in_owner = true
-visible = false
 layers = 2
 material_override = SubResource("StandardMaterial3D_6bkys")
 mesh = SubResource("CapsuleMesh_p2iaj")
@@ -543,12 +552,5 @@ text = "....."
 label_settings = ExtResource("12_8ugyt")
 vertical_alignment = 1
 
-[node name="StateMachine_Weapon" type="Node" parent="." unique_id=1446267504]
-unique_name_in_owner = true
-script = ExtResource("15_h1wib")
-
-[node name="Weapon_Pistol" type="Node" parent="StateMachine_Weapon" unique_id=1305408021]
-script = ExtResource("9_g1ssd")
-
-[node name="Weapon_Ak47" type="Node" parent="StateMachine_Weapon" unique_id=1110610163]
-script = ExtResource("16_b46m6")
+[node name="Gun_Point" type="Node3D" parent="." unique_id=902750415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.733, 0.649, 0)

@@ -63,7 +63,9 @@ func input_management() -> void:
 			if !raycast_verification():
 				play_char.walk_or_run = "WalkState"
 				transitioned.emit(self, "WalkState")
-			
+				
+	if Input.is_action_just_pressed(play_char.stun_action):
+		transitioned.emit(self, "StunState")
 func raycast_verification() -> bool:
 	#check if the raycast used to check ceilings is colliding or not
 	return play_char.ceiling_check.is_colliding()
