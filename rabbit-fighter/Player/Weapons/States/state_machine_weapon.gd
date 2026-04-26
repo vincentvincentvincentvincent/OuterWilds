@@ -1,11 +1,41 @@
 extends Node
 
+class_name StateMachineWeapon
 
-# Called when the node enters the scene tree for the first time.
+@export var initial_state : State
+
+var curr_state : State
+var curr_state_name  : String
+var states : Dictionary = {}
+
+@onready var wpn : Node = $".."
+
 func _ready() -> void:
-	pass # Replace with function body.
+	#get all the state childrens
+	for child in get_children():
+		if child is State:
+			states[child.name.to_lower()] = child
+			child.transitioned.connect(on_state_child_transition)
+			
+	#if initial state, transition to it
+	if initial_state:
+		initial_state.enter(wpn)
+		curr_state = initial_state
+		curr_state_name = curr_state.state_name
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func on_state_child_transition(state : State, new_state_name : String) -> void:
+	#manage the transition from one state to another
+	
+	if state != curr_state: return
+	
+	var new_state = states.get(new_state_name.to_lower())
+	if !new_state: return
+	
+	#exit the current state
+	if curr_state: curr_state.exit()
+	
+	#enter the new state
+	new_state.enter(wpn)
+	
+	curr_state = new_state
+	curr_state_name = curr_state.state_name

@@ -4,6 +4,7 @@ class_name HUD
 
 #player character reference variable
 @onready var play_char : PlayerCharacter = $".."
+@onready var wpn_holder : Node = $"../Weapon"
 
 #label references variables
 @onready var current_state_label_text: Label = %CurrentStateLabelText
@@ -22,6 +23,8 @@ class_name HUD
 @onready var Can_Attack_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/CanAttackLabelText
 @onready var Health_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/HealthLabelText
 @onready var Times_Died_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/TimesDiedLabelText
+@onready var Attack_Mode_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/AttackModeLabelText
+@onready var Level_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/LevelLabelText
 func _process(_delta : float) -> void:
 	if Input.is_action_just_pressed("dev"):
 		if %HUD.visible == true:
@@ -49,6 +52,8 @@ func display_properties() -> void:
 	Can_Attack_Label_Text.set_text(str(play_char.can_attack))
 	Health_Label_Text.set_text(str(play_char.health))
 	Times_Died_Label_Text.set_text(str(play_char.times_died))
+	Attack_Mode_Label_Text.set_text(str(wpn_holder.current_weapon))
+	Level_Label_Text.set_text(str(wpn_holder.level))
 
 	
 func display_current_FPS() -> void:

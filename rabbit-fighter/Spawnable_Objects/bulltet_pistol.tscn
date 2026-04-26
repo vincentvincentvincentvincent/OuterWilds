@@ -10,6 +10,7 @@ material = SubResource("StandardMaterial3D_eske2")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3h4gd"]
 
 [node name="Bulltet_Pistol" type="Area3D" unique_id=1158862435]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_7h2wj")

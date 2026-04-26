@@ -1,11 +1,10 @@
-extends Node
+extends State
 
+class_name Ak47
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var state_name : String = "Ak47"
 
+var play_char : CharacterBody3D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func enter(play_char_ref : CharacterBody3D) -> void:
+	print("Ak47")

@@ -151,6 +151,8 @@ func _process(delta):
 		check_doubletap("play_char_move_forward_action")
 	if Input.is_action_just_pressed("play_char_move_backward_action"):
 		check_doubletap("play_char_move_backward_action")
+	
+	attack()
 
 
 func health_checker():
@@ -240,11 +242,21 @@ func tween_model_height(state_model_height : float) -> void:
 	model_tween.finished.connect(Callable(model_tween, "kill"))
 
 func look_direction():
-	if $".".is_on_floor() and can_attack == true:
+	if is_on_floor() and can_attack == true:
 		if Input.is_action_just_pressed("play_char_move_forward_action"):
 			var rotate_forward_tween = create_tween()
 			rotate_forward_tween.tween_property(%Model, "rotation:y", rotation.y + deg_to_rad(-180), 0.3)
+			dir_fix = -0.05
 
 		if Input.is_action_just_pressed("play_char_move_backward_action"):
 			var rotate_forward_tween = create_tween()
 			rotate_forward_tween.tween_property(%Model, "rotation:y", rotation.y + deg_to_rad(0), 0.3)
+			dir_fix = 0.05
+			
+
+var dir_fix = 0.05
+signal  attacked(pos: Vector3, dir: Vector3)
+
+func attack():
+	if Input.is_action_just_pressed("play_char_attack_action") and can_attack == true:
+		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.x))

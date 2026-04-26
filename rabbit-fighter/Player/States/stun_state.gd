@@ -41,6 +41,7 @@ func physics_update(delta : float) -> void:
 	move(delta)
 	stunremover()
 	check_stun_count()
+
 func applies(delta : float) -> void:
 	if play_char.hit_ground_cooldown > 0.0: play_char.hit_ground_cooldown -= delta
 	
@@ -91,9 +92,10 @@ func move(delta : float) -> void:
 	
 	
 func stunremover():
-	
-	if Input and !Input.is_action_just_pressed("play_char_run_action") and can_transition == false and %StateMachine.curr_state_name == "Stunstate":
+
+	if Input.is_action_just_pressed("play_char_attack_action") or Input.is_action_just_pressed("play_char_crouch_action") or Input.is_action_just_pressed("play_char_jump_action") or Input.is_action_just_pressed("play_char_move_backward_action") or Input.is_action_just_pressed("play_char_move_forward_action"):
 		stun_input_counter += 1
+
 
 func check_stun_count():
 	if stun_input_counter >= stun_amount:

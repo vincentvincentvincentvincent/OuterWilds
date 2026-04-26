@@ -3,15 +3,15 @@ extends Area3D
 @export var set_dmg_head: int = 40
 
 var direction: Vector3
-var speed: int = 10
-var range: int = 13
+var speed: int = 580
+var brange: int = 13
 
 func setup(pos:Vector3 , Dir:Vector3):
 	position = pos + Dir * 16
-	direction = Dir
+	direction = Dir 
 
 func _ready() -> void:
-	await get_tree().create_timer(range).timeout
+	await get_tree().create_timer(brange).timeout
 	queue_free()
 
 func _physics_process(delta: float) -> void:
