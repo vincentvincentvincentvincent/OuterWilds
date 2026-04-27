@@ -4,3 +4,4 @@ extends Node
 var Fire_time :float
 var bullet_scene :String
 var Reload_time : float
+var Clip_size : int 

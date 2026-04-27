@@ -25,6 +25,7 @@ class_name HUD
 @onready var Times_Died_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/TimesDiedLabelText
 @onready var Attack_Mode_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/AttackModeLabelText
 @onready var Level_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/LevelLabelText
+@onready var Reloading_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/ReloadingLabelText3
 func _process(_delta : float) -> void:
 	if Input.is_action_just_pressed("dev"):
 		if %HUD.visible == true:
@@ -54,6 +55,7 @@ func display_properties() -> void:
 	Times_Died_Label_Text.set_text(str(play_char.times_died))
 	Attack_Mode_Label_Text.set_text(str(wpn_holder.current_weapon))
 	Level_Label_Text.set_text(str(wpn_holder.level))
+	Reloading_Label_Text.set_text(str(play_char.reloading))
 
 	
 func display_current_FPS() -> void:

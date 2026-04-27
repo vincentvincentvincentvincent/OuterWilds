@@ -193,6 +193,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	look_direction()
 	health_checker()
+	reloadcontrol()
 
 	
 func modify_physics_properties() -> void:
@@ -251,12 +252,35 @@ func look_direction():
 		if Input.is_action_just_pressed("play_char_move_backward_action"):
 			var rotate_forward_tween = create_tween()
 			rotate_forward_tween.tween_property(%Model, "rotation:y", rotation.y + deg_to_rad(0), 0.3)
-			dir_fix = 0.05
+			dir_fix = 0.055
 			
 
 var dir_fix = 0.05
 signal  attacked(pos: Vector3, dir: Vector3)
-
+signal attackheld()
+var Firetimeout :bool = false
+var reloading:bool = false
+var shots_fired:int = 0
 func attack():
-	if Input.is_action_just_pressed("play_char_attack_action") and can_attack == true:
-		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.x))
+
+	if Input.is_action_pressed("play_char_attack_action") and can_attack == true and Firetimeout == false and reloading == false:
+		Firetimeout = true
+		await get_tree().create_timer(Global.Fire_time).timeout
+		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.z))
+		shots_fired += 1
+		await get_tree().create_timer(0.1).timeout
+		attackheld.emit()
+		Firetimeout = false
+			
+	if Input.is_action_just_pressed("play_char_attack_action") and can_attack == true and Firetimeout == false and reloading == false:
+		Firetimeout = true
+		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.z))
+		shots_fired += 1
+		await get_tree().create_timer(Global.Fire_time).timeout
+		Firetimeout = false
+		
+
+func reloadcontrol():
+	if shots_fired == Global.Clip_size:
+		reloading = true
+		await get_tree().create_timer(Global.Reload_time).timeout

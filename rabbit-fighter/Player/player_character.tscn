@@ -580,3 +580,6 @@ script = ExtResource("9_g1ssd")
 
 [node name="Weapon_Ak47" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=1110610163]
 script = ExtResource("16_b46m6")
+
+[connection signal="attacked" from="." to="Weapon/StateMachine_Weapon/Weapon_Pistol" method="_on_player_character_attacked"]
+[connection signal="attackheld" from="." to="Weapon/StateMachine_Weapon/Weapon_Pistol" method="_on_player_character_attackheld"]
