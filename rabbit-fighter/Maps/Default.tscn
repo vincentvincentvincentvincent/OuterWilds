@@ -20,10 +20,6 @@ _limits = [3.0, 30.0, 0.0, 30.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(30, 30), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_qt646"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_firbl"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qt646"]
 size = Vector3(46.295288, 12.310547, 1)
 
@@ -44,10 +40,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016052246, -0.1237793, 0)
 shape = SubResource("BoxShape3D_clmtl")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=710571833 node_paths=PackedStringArray("PJ1", "PJ2")]
-transform = Transform3D(1, 0, 0, 0, 1, 6e-45, 0, -6e-45, 1, 4.162398, 7.999999, 16.999992)
+transform = Transform3D(1, 0, 0, 0, 1, 6e-45, 0, -6e-45, 1, -0.49999988, 6.000001, 10.000004)
 script = ExtResource("1_qt646")
 PJ1 = NodePath("../PlayerCharacter")
-PJ2 = NodePath("../PLACEHOLDERFOROTHERPLAYER")
+PJ2 = NodePath("../PlayerCharacter2")
 min_degree_threshold = 0.002
 max_distance_threshold = 10.0
 min_cam_distance = 10.0
@@ -66,14 +62,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
 desired_move_speed_curve = SubResource("Curve_2tsxa")
 in_air_move_speed_curve = SubResource("Curve_br1r7")
 
-[node name="PLACEHOLDERFOROTHERPLAYER" type="CharacterBody3D" parent="." unique_id=1291050422]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3248, 2, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PLACEHOLDERFOROTHERPLAYER" unique_id=173844868]
-mesh = SubResource("CylinderMesh_qt646")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PLACEHOLDERFOROTHERPLAYER" unique_id=257701173]
-shape = SubResource("CylinderShape3D_firbl")
+[node name="PlayerCharacter2" parent="." unique_id=1507499167 instance=ExtResource("1_clmtl")]
+player_id = 2
 
 [node name="border" type="StaticBody3D" parent="." unique_id=681772395]
 

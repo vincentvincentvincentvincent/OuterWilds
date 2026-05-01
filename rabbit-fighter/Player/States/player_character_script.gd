@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 class_name PlayerCharacter
 
+@export_group("multiplayer")
+@export var player_id = 1
+
 @export_group("Movement variables")
 var move_speed: float
 var move_accel: float
@@ -65,20 +68,7 @@ var coyote_jump_on: bool = false
 @onready var jump_gravity: float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 @onready var fall_gravity: float = (-2.0 * jump_height) / (jump_time_to_fall * jump_time_to_fall)
 
-@export_group("Keybind variables")
-@export var move_forward_action: StringName = "play_char_move_forward_action"
-@export var move_backward_action: StringName = "play_char_move_backward_action"
-@export var move_left_action: StringName = "play_char_move_left_action"
-@export var move_right_action: StringName = "play_char_move_right_action"
-@export var run_action: StringName = "play_char_run_action"
-@export var crouch_action: StringName = "play_char_crouch_action"
-@export var jump_action: StringName = "play_char_jump_action"
-@export var attack_action: StringName = "play_char_attack_action"
-@export var stun_action: StringName = "play_char_stun_action"
-@onready var input_actions_list : Array[StringName] = [move_forward_action, move_backward_action, move_left_action, move_right_action, 
-run_action, crouch_action, jump_action, attack_action, stun_action]
-@export var check_on_ready_if_inputs_registered : bool = true
-var default_input_actions : Dictionary
+
 
 @export_group("Combat variables")
 @export var can_attack: bool = false
@@ -104,25 +94,7 @@ func _ready() -> void:
 	jump_cooldown = -1.0
 	nb_jumps_in_air_allowed_ref = nb_jumps_in_air_allowed
 	coyote_jump_cooldown_ref = coyote_jump_cooldown
-	
 
-	
-	build_default_keybinding()
-	input_actions_check()
-	
-func build_default_keybinding() -> void:
-	#build it in runtime to ensure that export variables have been set
-	default_input_actions = {
-		move_forward_action : [Key.KEY_A], 
-		move_backward_action : [Key.KEY_D],
-		move_left_action : [Key.KEY_UNKNOWN,],
-		move_right_action : [Key.KEY_UNKNOWN],
-		run_action : [Key.KEY_UNKNOWN],
-		crouch_action : [Key.KEY_S],
-		jump_action : [Key.KEY_W],
-		attack_action : [Key.KEY_L],
-		stun_action : [Key.KEY_UNKNOWN],
-	}
 #double tap
 var hold_timer = 0.0
 var is_holding = false
@@ -132,14 +104,14 @@ const DOUBLETAP_DELAY = 0.3
 
 func check_doubletap(action: String):
 	if last_action == action and doubletap_timer > 0:
-		Input.action_press("play_char_run_action")
+		Input.action_press("play_char_run_action_%s" %[player_id])
 		# Reset after doubletap
 		last_action = ""
 		doubletap_timer = 0.0
 	else:
 		last_action = action
 		doubletap_timer = DOUBLETAP_DELAY
-		Input.action_release("play_char_run_action")
+		Input.action_release("play_char_run_action_%s" %[player_id])
 func _process(delta):
 	# Update timer
 	if doubletap_timer > 0:
@@ -147,10 +119,10 @@ func _process(delta):
 	else:
 		last_action = ""
 		
-	if Input.is_action_just_pressed("play_char_move_forward_action"):
-		check_doubletap("play_char_move_forward_action")
-	if Input.is_action_just_pressed("play_char_move_backward_action"):
-		check_doubletap("play_char_move_backward_action")
+	if Input.is_action_just_pressed("play_char_move_forward_action_%s" %[player_id]):
+		check_doubletap("play_char_move_forward_action_%s" %[player_id])
+	if Input.is_action_just_pressed("play_char_move_backward_action_%s" %[player_id]):
+		check_doubletap("play_char_move_backward_action_%s" %[player_id])
 	
 	attack()
 
@@ -159,37 +131,12 @@ func health_checker():
 	if health <=0:
 		times_died += 1
 		health = 100
-func input_actions_check() -> void:
-	#check if the input actions written in the editor are the same as the ones registered in the Input map, and if they are written correctly
-	#if not, add it to runtime Input map with default keybindings
-	if check_on_ready_if_inputs_registered:
-		var registered_input_actions: Array[StringName] = []
-		for input_action in InputMap.get_actions():
-			if input_action.begins_with(&"play_char_"):
-				registered_input_actions.append(input_action)
-				
-		for input_action in input_actions_list:
-			if input_action == &"":
-				assert(false, "There's an undefined input action")
-				
-			if not registered_input_actions.has(input_action):
-				var key_names = default_input_actions[input_action].map(func(key):
-					return OS.get_keycode_string(key)
-				)
-				
-				push_warning("'{input}' missing in InputMap, or input action wrongly named in the editor.\nAdding the '{input}' to runtime InputMap temporarily with the key/s: {keys}"
-				.format({"input": input_action, "keys": String(", ").join(key_names)}))
-				
-				InputMap.add_action(input_action)
-				for keycode in default_input_actions[input_action]:
-					var input_event_key = InputEventKey.new()
-					input_event_key.physical_keycode = keycode
-					InputMap.action_add_event(input_action, input_event_key)
-					
+
 func _physics_process(_delta: float) -> void:
 	modify_physics_properties()
 	#added this to prevent players from going behind shit collisions
 	position.z = 0
+	
 	move_and_slide()
 	look_direction()
 	health_checker()
@@ -244,12 +191,12 @@ func tween_model_height(state_model_height : float) -> void:
 
 func look_direction():
 	if is_on_floor() and can_attack == true:
-		if Input.is_action_just_pressed("play_char_move_forward_action"):
+		if Input.is_action_just_pressed("play_char_move_forward_action_%s" %[player_id]):
 			var rotate_forward_tween = create_tween()
 			rotate_forward_tween.tween_property(%Model, "rotation:y", rotation.y + deg_to_rad(-180), 0.3)
 			dir_fix = -0.05
 
-		if Input.is_action_just_pressed("play_char_move_backward_action"):
+		if Input.is_action_just_pressed("play_char_move_backward_action_%s" %[player_id]):
 			var rotate_forward_tween = create_tween()
 			rotate_forward_tween.tween_property(%Model, "rotation:y", rotation.y + deg_to_rad(0), 0.3)
 			dir_fix = 0.055
@@ -263,16 +210,17 @@ var reloading:bool = false
 var shots_fired:int = 0
 func attack():
 
-	if Input.is_action_pressed("play_char_attack_action") and can_attack == true and Firetimeout == false and reloading == false:
+	if Input.is_action_pressed("play_char_attack_action_%s" %[player_id]) and can_attack == true and Firetimeout == false and reloading == false:
 		Firetimeout = true
 		await get_tree().create_timer(Global.Fire_time).timeout
 		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.z))
 		shots_fired += 1
 		await get_tree().create_timer(0.1).timeout
 		attackheld.emit()
+		print("held")
 		Firetimeout = false
 			
-	if Input.is_action_just_pressed("play_char_attack_action") and can_attack == true and Firetimeout == false and reloading == false:
+	if Input.is_action_just_pressed("play_char_attack_action_%s" %[player_id]) and can_attack == true and Firetimeout == false and reloading == false:
 		Firetimeout = true
 		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.z))
 		shots_fired += 1
@@ -284,3 +232,5 @@ func reloadcontrol():
 	if shots_fired == Global.Clip_size:
 		reloading = true
 		await get_tree().create_timer(Global.Reload_time).timeout
+		reloading = false
+		shots_fired = 0

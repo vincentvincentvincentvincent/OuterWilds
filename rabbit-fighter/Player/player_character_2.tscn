@@ -1,22 +1,22 @@
-[gd_scene format=3 uid="uid://rndong4pradu"]
+[gd_scene format=3 uid="uid://cgtv4sjsv4tw3"]
 
-[ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://Player/States/player_character_script.gd" id="1_3yrp4"]
-[ext_resource type="Script" uid="uid://sca7ypsol83f" path="res://Player/States/state_machine_script.gd" id="2_g1ssd"]
-[ext_resource type="Script" uid="uid://stil4xkf3tk0" path="res://Player/States/idle_state_script.gd" id="3_g61ia"]
-[ext_resource type="Script" uid="uid://bhoqhv7escpyx" path="res://Player/States/crouch_state_script.gd" id="4_cymb5"]
-[ext_resource type="Script" uid="uid://blt7dest23fk0" path="res://Player/States/walk_state_script.gd" id="5_b46m6"]
-[ext_resource type="Script" uid="uid://5gk47o641xgt" path="res://Player/States/run_state_script.gd" id="6_h1wib"]
-[ext_resource type="Script" uid="uid://dvu58wf01wils" path="res://Player/States/jump_state_script.gd" id="7_dl8ye"]
-[ext_resource type="Script" uid="uid://bh3rdvokmrar1" path="res://Player/States/inair_state_script.gd" id="8_nlpte"]
-[ext_resource type="Script" uid="uid://bxykx0r2xss40" path="res://Player/Weapons/States/Weapon_Pistol.gd" id="9_g1ssd"]
-[ext_resource type="Script" uid="uid://b5kq0o8fnias1" path="res://Player/States/stun_state.gd" id="10_b46m6"]
-[ext_resource type="Script" uid="uid://6c5lt0v6qg02" path="res://Player/dmgbox_head.gd" id="10_dl8ye"]
-[ext_resource type="Script" uid="uid://dx02l6p6behb8" path="res://addons/PlayerCharacter/UI/hud_script.gd" id="10_hwwa7"]
-[ext_resource type="Script" uid="uid://cjwoig17gaf1l" path="res://Player/dmgbox_body.gd" id="11_dl8ye"]
-[ext_resource type="StyleBox" uid="uid://c50syhy1a4dmh" path="res://addons/PlayerCharacter/UI/player_character_ui_theme.tres" id="11_o6nip"]
-[ext_resource type="LabelSettings" uid="uid://d1rg1oruwidf" path="res://addons/PlayerCharacter/UI/label_font_setting.tres" id="12_8ugyt"]
-[ext_resource type="Script" uid="uid://dvji730nr7u7c" path="res://Player/Weapons/States/weapon_ak_47.gd" id="16_b46m6"]
-[ext_resource type="Script" uid="uid://bwq6xbwctjkk5" path="res://Player/weapon_controls.gd" id="19_nlpte"]
+[ext_resource type="Script" uid="uid://d3s8yxuvpmekm" path="res://Player/States/player_character_script.gd" id="1_ptml8"]
+[ext_resource type="Script" uid="uid://sca7ypsol83f" path="res://Player/States/state_machine_script.gd" id="2_kakb6"]
+[ext_resource type="Script" uid="uid://stil4xkf3tk0" path="res://Player/States/idle_state_script.gd" id="3_n6mqp"]
+[ext_resource type="Script" uid="uid://bhoqhv7escpyx" path="res://Player/States/crouch_state_script.gd" id="4_1vtl5"]
+[ext_resource type="Script" uid="uid://blt7dest23fk0" path="res://Player/States/walk_state_script.gd" id="5_qvkls"]
+[ext_resource type="Script" uid="uid://5gk47o641xgt" path="res://Player/States/run_state_script.gd" id="6_bqnhy"]
+[ext_resource type="Script" uid="uid://dvu58wf01wils" path="res://Player/States/jump_state_script.gd" id="7_vviil"]
+[ext_resource type="Script" uid="uid://bh3rdvokmrar1" path="res://Player/States/inair_state_script.gd" id="8_vqod1"]
+[ext_resource type="Script" uid="uid://b5kq0o8fnias1" path="res://Player/States/stun_state.gd" id="9_ufpgv"]
+[ext_resource type="Script" uid="uid://6c5lt0v6qg02" path="res://Player/dmgbox_head.gd" id="10_pm6bd"]
+[ext_resource type="Script" uid="uid://cjwoig17gaf1l" path="res://Player/dmgbox_body.gd" id="11_vww4a"]
+[ext_resource type="Script" uid="uid://dx02l6p6behb8" path="res://addons/PlayerCharacter/UI/hud_script.gd" id="12_ykvu7"]
+[ext_resource type="StyleBox" uid="uid://c50syhy1a4dmh" path="res://addons/PlayerCharacter/UI/player_character_ui_theme.tres" id="13_bex15"]
+[ext_resource type="LabelSettings" uid="uid://d1rg1oruwidf" path="res://addons/PlayerCharacter/UI/label_font_setting.tres" id="14_hulbn"]
+[ext_resource type="Script" uid="uid://bwq6xbwctjkk5" path="res://Player/weapon_controls.gd" id="15_fwubp"]
+[ext_resource type="Script" uid="uid://bxykx0r2xss40" path="res://Player/Weapons/States/Weapon_Pistol.gd" id="16_1amac"]
+[ext_resource type="Script" uid="uid://dvji730nr7u7c" path="res://Player/Weapons/States/weapon_ak_47.gd" id="17_jtxvo"]
 
 [sub_resource type="Curve" id="Curve_2tsxa"]
 _limits = [0.0, 30.0, 0.0, 60.0]
@@ -31,10 +31,6 @@ point_count = 2
 [sub_resource type="GDScript" id="GDScript_3yrp4"]
 script/source = "extends Node3D
 "
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h1wib"]
-radius = 0.42260742
-height = 0.8616699
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b46m6"]
 radius = 0.42260742
@@ -62,7 +58,8 @@ floor_block_on_wall = false
 floor_max_angle = 1.13446
 floor_snap_length = 0.0
 platform_floor_layers = 4278190081
-script = ExtResource("1_3yrp4")
+script = ExtResource("1_ptml8")
+player_id = 2
 desired_move_speed_curve = SubResource("Curve_2tsxa")
 in_air_move_speed_curve = SubResource("Curve_br1r7")
 bunny_hop_dms_incre = 0.0
@@ -72,35 +69,35 @@ jump_height = 4.0
 
 [node name="StateMachine" type="Node" parent="." unique_id=931857651 node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
-script = ExtResource("2_g1ssd")
+script = ExtResource("2_kakb6")
 initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=394410750]
-script = ExtResource("3_g61ia")
+script = ExtResource("3_n6mqp")
 metadata/_custom_type_script = "uid://stil4xkf3tk0"
 
 [node name="CrouchState" type="Node" parent="StateMachine" unique_id=476322435]
-script = ExtResource("4_cymb5")
+script = ExtResource("4_1vtl5")
 metadata/_custom_type_script = "uid://bhoqhv7escpyx"
 
 [node name="WalkState" type="Node" parent="StateMachine" unique_id=1592098153]
-script = ExtResource("5_b46m6")
+script = ExtResource("5_qvkls")
 metadata/_custom_type_script = "uid://blt7dest23fk0"
 
 [node name="RunState" type="Node" parent="StateMachine" unique_id=1366066256]
-script = ExtResource("6_h1wib")
+script = ExtResource("6_bqnhy")
 metadata/_custom_type_script = "uid://5gk47o641xgt"
 
 [node name="JumpState" type="Node" parent="StateMachine" unique_id=1931624113]
-script = ExtResource("7_dl8ye")
+script = ExtResource("7_vviil")
 metadata/_custom_type_script = "uid://dvu58wf01wils"
 
 [node name="InairState" type="Node" parent="StateMachine" unique_id=880216578]
-script = ExtResource("8_nlpte")
+script = ExtResource("8_vqod1")
 metadata/_custom_type_script = "uid://bh3rdvokmrar1"
 
 [node name="StunState" type="Node" parent="StateMachine" unique_id=2059997209]
-script = ExtResource("10_b46m6")
+script = ExtResource("9_ufpgv")
 
 [node name="CameraHolder" type="Node3D" parent="." unique_id=1750117354]
 unique_name_in_owner = true
@@ -110,11 +107,11 @@ script = SubResource("GDScript_3yrp4")
 [node name="Hitbox_head" type="CollisionShape3D" parent="." unique_id=599971163]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5408897, 0)
-shape = SubResource("CapsuleShape3D_h1wib")
+shape = SubResource("CapsuleShape3D_b46m6")
 
 [node name="Dmgbox_head" type="Area3D" parent="." unique_id=781795598]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5408897, 0)
-script = ExtResource("10_dl8ye")
+script = ExtResource("10_pm6bd")
 
 [node name="Dmgbox_head" type="CollisionShape3D" parent="Dmgbox_head" unique_id=1031629219]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.028241575, 0)
@@ -127,7 +124,7 @@ shape = SubResource("CapsuleShape3D_5yjma")
 
 [node name="Dmgbox_body" type="Area3D" parent="." unique_id=1409176799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1000337, 0)
-script = ExtResource("11_dl8ye")
+script = ExtResource("11_vww4a")
 
 [node name="Dmgbox_body" type="CollisionShape3D" parent="Dmgbox_body" unique_id=338768553]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116582155, 0)
@@ -162,12 +159,17 @@ debug_shape_custom_color = Color(0, 0, 0.956863, 1)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=382546849]
 unique_name_in_owner = true
-script = ExtResource("10_hwwa7")
+script = ExtResource("12_ykvu7")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=2004601024]
-offset_right = 248.0
-offset_bottom = 252.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -354.0
+offset_top = 94.0
+offset_bottom = 348.0
+grow_horizontal = 0
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -177,7 +179,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = ExtResource("11_o6nip")
+theme_override_styles/panel = ExtResource("13_bex15")
 
 [node name="PlayCharInfos" type="HBoxContainer" parent="HUD/MarginContainer/PanelContainer" unique_id=1526751208]
 layout_mode = 2
@@ -190,7 +192,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Current state : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="DesiredMoveSpeedLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=432599912]
@@ -198,7 +200,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Desired move speed : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="VelocityLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1496362109]
@@ -206,7 +208,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Velocity : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="VelocityVectorLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1377180890]
@@ -214,7 +216,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Velocity vector : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="IsOnFloorLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1868360357]
@@ -222,7 +224,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Is on floor :"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="CeilingCheckLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=708687620]
@@ -230,7 +232,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Ceiling raycast colliding :"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="JumpBufferLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=643555198]
@@ -238,7 +240,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Jump buffering  on :"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="CoyoteTimeLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=99478503]
@@ -246,7 +248,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Coyote time :"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="NbJumpsInAirAllowedLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=805513229]
@@ -254,7 +256,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Nb jumps in air allowed :"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="JumpCooldownLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=1163255745]
@@ -262,7 +264,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Time before can jump again :"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="GravityInairLabel" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=667484222]
@@ -270,7 +272,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Gravity Fall:"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="GravityInairLabel2" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer" unique_id=937262486]
@@ -278,7 +280,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Gravity Jump:"
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos" unique_id=1242408874]
@@ -290,7 +292,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="DesiredMoveSpeedLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1370247928]
@@ -299,7 +301,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="VelocityLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=87827421]
@@ -308,7 +310,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="VelocityVectorLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=158882373]
@@ -317,7 +319,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="IsOnFloorLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=539885338]
@@ -326,7 +328,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="CeilingCheckLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1269415198]
@@ -335,7 +337,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="JumpBufferLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=891390731]
@@ -344,7 +346,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="CoyoteTimeLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1433869406]
@@ -353,7 +355,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="NbJumpsInAirAllowedLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1577784755]
@@ -362,7 +364,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="JumpCooldownLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1111413105]
@@ -371,7 +373,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="GravityAirLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=1043366077]
@@ -380,7 +382,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="GravityJumpLabelText" type="Label" parent="HUD/MarginContainer/PanelContainer/PlayCharInfos/VBoxContainer2" unique_id=2072016987]
@@ -389,62 +391,25 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="HUD" unique_id=1807707837]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -153.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer2" unique_id=1574288976]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("11_o6nip")
-
-[node name="PlayCharInfos2" type="HBoxContainer" parent="HUD/MarginContainer2/PanelContainer" unique_id=1976881281]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2" unique_id=690970496]
-layout_mode = 2
-
-[node name="FramesPerSecondLabel" type="Label" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=1338522606]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Frames per seconds : "
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2" unique_id=87285712]
-layout_mode = 2
-
-[node name="FramesPerSecondLabelText" type="Label" parent="HUD/MarginContainer2/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=1352782966]
-unique_name_in_owner = true
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="HUD" unique_id=1602279140]
-offset_left = 9.0
-offset_top = 255.0
-offset_right = 220.0
-offset_bottom = 300.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -212.0
+offset_top = 346.0
+offset_right = -1.0
+offset_bottom = 505.0
+grow_horizontal = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer3" unique_id=2143302667]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("11_o6nip")
+theme_override_styles/panel = ExtResource("13_bex15")
 
 [node name="PlayCharInfos2" type="HBoxContainer" parent="HUD/MarginContainer3/PanelContainer" unique_id=59522909]
 layout_mode = 2
@@ -457,7 +422,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Attack Mode : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="Recoil" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=102855907]
@@ -465,7 +430,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Recoil : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="Reload" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=2114146833]
@@ -473,7 +438,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Reloading : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="CanAttack" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=2086735493]
@@ -481,7 +446,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Can Attack : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="Health" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=461427826]
@@ -489,7 +454,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Health : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="TimesDied" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=1485477634]
@@ -497,7 +462,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Times Died : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="Level" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer" unique_id=740625450]
@@ -505,7 +470,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Level : "
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2" unique_id=1073556393]
@@ -516,7 +481,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="RecoilLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=277240741]
@@ -524,7 +489,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="ReloadingLabelText3" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=986042977]
@@ -532,7 +497,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="CanAttackLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=301692016]
@@ -540,7 +505,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="HealthLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=854262790]
@@ -548,7 +513,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="TimesDiedLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=1710282095]
@@ -556,7 +521,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="LevelLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=1575372400]
@@ -564,212 +529,26 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "....."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="MarginContainer4" type="MarginContainer" parent="HUD" unique_id=791236034]
-offset_left = 253.0
-offset_right = 740.0
-offset_bottom = 254.0
-size_flags_horizontal = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer4" unique_id=1969096492]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = ExtResource("11_o6nip")
-
-[node name="PlayCharInfos" type="HBoxContainer" parent="HUD/MarginContainer4/PanelContainer" unique_id=2104904]
-layout_mode = 2
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos" unique_id=658204121]
-layout_mode = 2
-
-[node name="CurrentStateLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=103441715]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="DesiredMoveSpeedLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=800913832]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="VelocityLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=698319885]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="VelocityVectorLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=100904970]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="IsOnFloorLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=1200325869]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="CeilingCheckLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=2016658337]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="JumpBufferLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=1354385070]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="CoyoteTimeLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=141238898]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="NbJumpsInAirAllowedLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=1188189832]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="JumpCooldownLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=29187860]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="GravityAirLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=1939829601]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="GravityJumpLabelText" type="Label" parent="HUD/MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3" unique_id=1875936305]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "..................."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="MarginContainer5" type="MarginContainer" parent="HUD" unique_id=1132660392]
-offset_left = 427.0
-offset_top = 253.0
-offset_right = 638.0
-offset_bottom = 412.0
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer5" unique_id=1939409887]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("11_o6nip")
-
-[node name="PlayCharInfos2" type="HBoxContainer" parent="HUD/MarginContainer5/PanelContainer" unique_id=664255419]
-layout_mode = 2
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2" unique_id=1719029654]
-layout_mode = 2
-
-[node name="AttackModeLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=266899298]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="RecoilLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=580256028]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="ReloadingLabelText3" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=41302859]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="CanAttackLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=836147790]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="HealthLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=860747652]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="TimesDiedLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=283571060]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
-vertical_alignment = 1
-
-[node name="LevelLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=494489700]
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "....."
-label_settings = ExtResource("12_8ugyt")
+label_settings = ExtResource("14_hulbn")
 vertical_alignment = 1
 
 [node name="Weapon" type="Node" parent="." unique_id=1723325732]
-script = ExtResource("19_nlpte")
+script = ExtResource("15_fwubp")
+
+[node name="Fire_timer" type="Timer" parent="Weapon" unique_id=1246161335]
+wait_time = 0.5
+one_shot = true
+
+[node name="Reload" type="Timer" parent="Weapon" unique_id=1484710112]
 
 [node name="StateMachine_Weapon" type="Node" parent="Weapon" unique_id=1446267504]
 unique_name_in_owner = true
 
 [node name="Weapon_Pistol" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=1305408021]
-script = ExtResource("9_g1ssd")
+script = ExtResource("16_1amac")
 
 [node name="Weapon_Ak47" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=1110610163]
-script = ExtResource("16_b46m6")
+script = ExtResource("17_jtxvo")
 
 [connection signal="attacked" from="." to="Weapon/StateMachine_Weapon/Weapon_Pistol" method="_on_player_character_attacked"]
 [connection signal="attackheld" from="." to="Weapon/StateMachine_Weapon/Weapon_Pistol" method="_on_player_character_attackheld"]

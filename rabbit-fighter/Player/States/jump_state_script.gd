@@ -41,17 +41,18 @@ func applies(delta : float) -> void:
 		else: transitioned.emit(self, "IdleState")
 		
 func input_management() -> void:
-	if Input.is_action_just_pressed(play_char.jump_action):
+	if Input.is_action_just_pressed("play_char_jump_action_%s" %[play_char.player_id]):
 		if play_char.jump_cooldown < 0.0:
 			jump()
 			
-	if Input.is_action_just_pressed(play_char.crouch_action):
+	if Input.is_action_just_pressed("play_char_crouch_action_%s" %[play_char.player_id]):
 		$"../..".fall_gravity = (-6.0 * play_char.jump_height) / (play_char.jump_time_to_fall * play_char.jump_time_to_fall)
 		
-	if Input.is_action_just_pressed(play_char.stun_action):
+	if Input.is_action_just_pressed("play_char_stun_action_%s" %[play_char.player_id]):
 		transitioned.emit(self, "StunState")
 func move(delta : float) -> void:
-	play_char.input_direction = Input.get_vector(play_char.move_left_action, play_char.move_right_action, play_char.move_forward_action, play_char.move_backward_action)
+	play_char.input_direction = Input.get_vector("play_char_move_left_action_%s" %[play_char.player_id], "play_char_move_right_action_%s" %[play_char.player_id],
+	 "play_char_move_forward_action_%s" %[play_char.player_id],"play_char_move_backward_action_%s" %[play_char.player_id])
 	play_char.move_direction = (play_char.cam_holder.global_basis * Vector3(play_char.input_direction.x, 0.0, play_char.input_direction.y)).normalized()
 	
 	play_char.desired_move_speed = clamp(play_char.desired_move_speed, 0.0, play_char.max_desired_move_speed)

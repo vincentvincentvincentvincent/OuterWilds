@@ -26,6 +26,8 @@ class_name HUD
 @onready var Attack_Mode_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/AttackModeLabelText
 @onready var Level_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/LevelLabelText
 @onready var Reloading_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/ReloadingLabelText3
+
+
 func _process(_delta : float) -> void:
 	if Input.is_action_just_pressed("dev"):
 		if %HUD.visible == true:
@@ -36,6 +38,7 @@ func _process(_delta : float) -> void:
 	
 	display_properties()
 	
+	player2controls()
 func display_properties() -> void:
 	#player character properties
 	current_state_label_text.set_text(str(play_char.state_machine.curr_state_name))
@@ -59,12 +62,38 @@ func display_properties() -> void:
 
 	
 func display_current_FPS() -> void:
-	frames_per_second_label_text.set_text(str(Engine.get_frames_per_second()))
+	if play_char.player_id == 1:
+		frames_per_second_label_text.set_text(str(Engine.get_frames_per_second()))
+	elif play_char.player_id == 2:
+		$MarginContainer2.hide()
 	
 func round_to_3_decimals(value: float) -> float:
 	return round(value * 1000.0) / 1000.0
-	
-	
-	
-	
-	
+
+
+func player2controls():
+	if play_char.player_id == 2:
+		current_state_label_text = $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/CurrentStateLabelText
+		desired_move_speed_label_text =$MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/DesiredMoveSpeedLabelText
+		velocity_label_text = $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/VelocityLabelText
+		velocity_vector_label_text= $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/VelocityVectorLabelText
+		is_on_floor_label_text= $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/IsOnFloorLabelText
+		ceiling_check_label_text = $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/CeilingCheckLabelText
+		jump_buffer_label_text =$MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/JumpBufferLabelText
+		coyote_time_label_text = $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/CoyoteTimeLabelText
+		nb_jumps_in_air_allowed_label_text = $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/NbJumpsInAirAllowedLabelText
+		jump_cooldown_label_text =$MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/JumpCooldownLabelText
+		Gravity_Air_level_text = $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/GravityAirLabelText
+		Gravity_Jump_level_text = $MarginContainer4/PanelContainer/PlayCharInfos/VBoxContainer3/GravityJumpLabelText
+		Can_Attack_Label_Text = $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/CanAttackLabelText
+		Health_Label_Text = $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/HealthLabelText
+		Times_Died_Label_Text = $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/TimesDiedLabelText
+		Attack_Mode_Label_Text= $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/AttackModeLabelText
+		Level_Label_Text= $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/LevelLabelText
+		Reloading_Label_Text = $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/ReloadingLabelText3
+		$MarginContainer3.hide()
+		$MarginContainer2.hide()
+		$MarginContainer.hide()
+	elif  play_char.player_id == 1:
+		$MarginContainer4.hide()
+		$MarginContainer5.hide()
