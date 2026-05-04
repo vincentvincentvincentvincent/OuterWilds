@@ -6,8 +6,10 @@ var state_name : String = "Pistol"
 
 @onready var gun_pos: Node3D  = $"../../../Model/Gun_Point"
 @onready var weapon_holder =  $"../.."
+@onready var play_char : CharacterBody3D = $"../../.."
 
-var active:bool
+var active:bool = false
+
 
 
 var Fire_time = 0.05
@@ -32,10 +34,14 @@ func _process(_delta: float) -> void:
 
 
 	if active == true: 
-		Global.Fire_time = Fire_time
-		Global.Reload_time = Reload_time
-		Global.Clip_size = clip_size_local
-		Global.bullet_scene = bullet_sceneL
+		play_char.Fire_time_p = Fire_time
+		play_char.Reload_time_p = Reload_time
+		play_char.Clip_size_p = clip_size_local
+		
+		if play_char.player_id == 1:
+			Global.bullet_scene = bullet_sceneL
+		elif play_char.player_id == 2:
+			Global.bullet_scene2 = bullet_sceneL
 
 		Recoil_Current = recoil_pos[Recoil_Count]
 		gun_pos.position = Recoil_Current
@@ -54,9 +60,11 @@ func _on_player_character_attackheld() -> void:
 
 
 func recoilreset() :
+	if play_char.reloading == true:
+		Recoil_Count = 0
 	if shootingheld == false and active== true:
 		Recoil_Count =0
-	if Input.is_action_pressed("play_char_attack_action_1") and active== true:
+	if Input.is_action_pressed("play_char_attack_action_%s" %[play_char.player_id]) and active== true:
 		shootingheld = true
-	elif  Input.is_action_just_released("play_char_attack_action_1") and active== true:
+	elif  Input.is_action_just_released("play_char_attack_action_%s" %[play_char.player_id]) and active== true:
 		shootingheld = false

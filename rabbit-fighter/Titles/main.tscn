@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d1fkm0sktj1de"]
+
+[node name="Main" type="Node3D" unique_id=1891336768]
+
+[node name="Control" type="Control" parent="." unique_id=1831068923]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control" unique_id=1232708646]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 90.0
+offset_right = 498.76
+offset_bottom = 113.0
+scale = Vector2(8.375, 8.375)
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

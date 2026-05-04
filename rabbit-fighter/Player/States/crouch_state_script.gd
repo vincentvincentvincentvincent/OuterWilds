@@ -85,3 +85,7 @@ func move(delta : float) -> void:
 		play_char.velocity.z = lerp(play_char.velocity.z, 0.0, play_char.move_deccel * delta)
 		
 	if play_char.hit_ground_cooldown <= 0: play_char.desired_move_speed = play_char.velocity.length()
+
+
+func _on_dmgbox_head_applystun() -> void:
+	transitioned.emit(self, "StunState")

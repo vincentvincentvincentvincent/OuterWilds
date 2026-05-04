@@ -61,16 +61,7 @@ func applies(delta : float) -> void:
 			transitioned.emit(self, "JumpState")
 	
 func input_management() -> void:
-	if Input.is_action_just_pressed("play_char_jump_action_%s" %[play_char.player_id]) and can_transition == true:
-		if play_char.jump_cooldown < 0.0:
-			transitioned.emit(self, "JumpState")
-		
-	if Input.is_action_just_pressed("play_char_crouch_action_%s" %[play_char.player_id]) and can_transition == true:
-		transitioned.emit(self, "CrouchState")
-		
-	if Input.is_action_just_pressed("play_char_run_action_%s" %[play_char.player_id]) and can_transition == true:
-		play_char.walk_or_run = "RunState"
-		transitioned.emit(self, "RunState")
+
 	if Input.is_action_just_pressed("play_char_stun_action_%s" %[play_char.player_id]) and can_transition == true:
 		transitioned.emit(self, "StunState")
 		
@@ -96,8 +87,13 @@ func stunremover():
 
 	if Input.is_action_just_pressed("play_char_attack_action_%s" %[play_char.player_id]) or Input.is_action_just_pressed("play_char_crouch_action_%s" %[play_char.player_id]) or Input.is_action_just_pressed("play_char_jump_action_%s" %[play_char.player_id]) or Input.is_action_just_pressed("play_char_move_backward_action_%s" %[play_char.player_id]) or  Input.is_action_just_pressed("play_char_move_forward_action_%s" %[play_char.player_id]):
 		stun_input_counter += 1
+	
+	if play_char.invincible == true:
+		transitioned.emit(self, "IdleState")
 
 
 func check_stun_count():
 	if stun_input_counter >= stun_amount:
-		can_transition=true
+		stun_input_counter = 0
+		transitioned.emit(self, "IdleState")
+		

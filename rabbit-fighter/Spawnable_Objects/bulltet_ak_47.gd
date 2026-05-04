@@ -1,10 +1,10 @@
 extends Area3D
-@export var set_dmg_body: int = 20
-@export var set_dmg_head: int = 40
+@export var set_dmg_body: int = 10
+@export var set_dmg_head: int = 100
 
 var direction: Vector3
-var speed: int = 580
-var brange: int = 13
+var speed: int = 700
+var brange: int = 7
 
 func setup(pos:Vector3 , Dir:Vector3):
 	position = pos + Dir * 16
@@ -14,17 +14,14 @@ func _ready() -> void:
 	await get_tree().create_timer(brange).timeout
 	queue_free()
 
-
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
-
 
 
 func _on_area_entered(area: Area3D) -> void:
 	if "hit_head" in area:
 		area.hit_head(set_dmg_head)
+		print("hit")
 	elif "hit_body" in area:
 		area.hit_body(set_dmg_body)
-
-
 	queue_free()

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cnxcsl2jlvieg"]
+
+[ext_resource type="Script" uid="uid://bbf6dyltxsdbb" path="res://Spawnable_Objects/bulltet_ak_47.gd" id="1_5pcvm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eske2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_eske2"]
+material = SubResource("StandardMaterial3D_eske2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3h4gd"]
+
+[node name="Bulltet_ak47" type="Area3D" unique_id=1158862435]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_5pcvm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=12690679]
+mesh = SubResource("CapsuleMesh_eske2")
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=860780419]
+shape = SubResource("CapsuleShape3D_3h4gd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -3,7 +3,7 @@ extends CanvasLayer
 class_name HUD
 
 #player character reference variable
-@onready var play_char : PlayerCharacter = $".."
+@onready var play_char : PlayerCharacter =$".."
 @onready var wpn_holder : Node = $"../Weapon"
 
 #label references variables
@@ -26,6 +26,7 @@ class_name HUD
 @onready var Attack_Mode_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/AttackModeLabelText
 @onready var Level_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/LevelLabelText
 @onready var Reloading_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/ReloadingLabelText3
+@onready var Invuln_Label_Text: Label = $MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2/InvulnLabelText
 
 
 func _process(_delta : float) -> void:
@@ -56,9 +57,12 @@ func display_properties() -> void:
 	Can_Attack_Label_Text.set_text(str(play_char.can_attack))
 	Health_Label_Text.set_text(str(play_char.health))
 	Times_Died_Label_Text.set_text(str(play_char.times_died))
-	Attack_Mode_Label_Text.set_text(str(wpn_holder.current_weapon))
 	Level_Label_Text.set_text(str(wpn_holder.level))
 	Reloading_Label_Text.set_text(str(play_char.reloading))
+	Attack_Mode_Label_Text.set_text(str(wpn_holder.current_weapon))
+	Invuln_Label_Text.set_text(str(play_char.invincible))
+	
+
 
 	
 func display_current_FPS() -> void:
@@ -91,6 +95,7 @@ func player2controls():
 		Attack_Mode_Label_Text= $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/AttackModeLabelText
 		Level_Label_Text= $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/LevelLabelText
 		Reloading_Label_Text = $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/ReloadingLabelText3
+		Invuln_Label_Text = $MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3/InvulnLabelText
 		$MarginContainer3.hide()
 		$MarginContainer2.hide()
 		$MarginContainer.hide()

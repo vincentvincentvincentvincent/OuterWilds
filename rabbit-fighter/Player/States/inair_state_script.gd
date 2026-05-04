@@ -75,3 +75,7 @@ func move(delta : float) -> void:
 			
 			play_char.velocity.x = lerp(play_char.velocity.x, play_char.move_direction.x * contrd_des_move_speed, contrd_in_air_move_speed * delta)
 			play_char.velocity.z = lerp(play_char.velocity.z, play_char.move_direction.z * contrd_des_move_speed, contrd_in_air_move_speed * delta)
+
+
+func _on_dmgbox_head_applystun() -> void:
+	transitioned.emit(self, "StunState")

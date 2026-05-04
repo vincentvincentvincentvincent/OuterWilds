@@ -83,3 +83,7 @@ func move(delta : float) -> void:
 		if play_char.hit_ground_cooldown <= 0: play_char.desired_move_speed = play_char.velocity.length()
 	else:
 		transitioned.emit(self, "IdleState")
+
+
+func _on_dmgbox_head_applystun() -> void:
+	transitioned.emit(self, "StunState")

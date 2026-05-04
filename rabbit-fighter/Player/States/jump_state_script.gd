@@ -103,3 +103,7 @@ func jump() -> void:
 	if can_jump:
 		play_char.velocity.y = play_char.jump_velocity
 		can_jump = false
+
+
+func _on_dmgbox_head_applystun() -> void:
+	transitioned.emit(self, "StunState")

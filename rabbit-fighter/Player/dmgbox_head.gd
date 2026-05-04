@@ -1,7 +1,9 @@
 extends Area3D
 
 @onready var play_char = $".."
-@onready var player_id = play_char.player_id
+signal applystun
+
 func hit_head(set_dmg_head: int):
-	$"..".health -= set_dmg_head
-	Input.action_press("play_char_stun_action_%s" %[player_id])
+	if play_char.invincible == false:
+		$"..".health -= set_dmg_head
+		applystun.emit()

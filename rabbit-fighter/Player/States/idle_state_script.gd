@@ -86,3 +86,7 @@ func move(delta : float):
 		
 		#cancel desired move speed accumulation if the timer has elapsed (is up)
 		if play_char.hit_ground_cooldown <= 0: play_char.desired_move_speed = play_char.velocity.length()
+
+
+func _on_dmgbox_head_applystun() -> void:
+	transitioned.emit(self, "StunState")

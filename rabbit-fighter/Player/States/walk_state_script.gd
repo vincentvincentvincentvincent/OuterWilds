@@ -82,3 +82,7 @@ func move(delta : float) -> void:
 	else:
 		transitioned.emit(self, "IdleState")
 		
+
+
+func _on_dmgbox_head_applystun() -> void:
+	transitioned.emit(self, "StunState")

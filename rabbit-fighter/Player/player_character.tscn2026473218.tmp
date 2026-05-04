@@ -162,7 +162,6 @@ debug_shape_custom_color = Color(0, 0, 0.956863, 1)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=382546849]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("10_hwwa7")
 metadata/_edit_use_anchors_ = true
 
@@ -465,7 +464,7 @@ vertical_alignment = 1
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Invuln : "
+text = "Recoil : "
 label_settings = ExtResource("12_8ugyt")
 vertical_alignment = 1
 
@@ -520,7 +519,7 @@ text = "....."
 label_settings = ExtResource("12_8ugyt")
 vertical_alignment = 1
 
-[node name="InvulnLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=277240741]
+[node name="RecoilLabelText" type="Label" parent="HUD/MarginContainer3/PanelContainer/PlayCharInfos2/VBoxContainer2" unique_id=277240741]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
@@ -712,7 +711,7 @@ text = "....."
 label_settings = ExtResource("12_8ugyt")
 vertical_alignment = 1
 
-[node name="InvulnLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=580256028]
+[node name="RecoilLabelText" type="Label" parent="HUD/MarginContainer5/PanelContainer/PlayCharInfos2/VBoxContainer3" unique_id=580256028]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
@@ -772,13 +771,5 @@ script = ExtResource("9_g1ssd")
 [node name="Weapon_Ak47" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=1110610163]
 script = ExtResource("16_b46m6")
 
-[node name="Finish" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=578001530]
-
+[connection signal="attacked" from="." to="Weapon/StateMachine_Weapon/Weapon_Pistol" method="_on_player_character_attacked"]
 [connection signal="attackheld" from="." to="Weapon/StateMachine_Weapon/Weapon_Pistol" method="_on_player_character_attackheld"]
-[connection signal="attackheld" from="." to="Weapon/StateMachine_Weapon/Weapon_Ak47" method="_on_player_character_attackheld"]
-[connection signal="applystun" from="Dmgbox_head" to="StateMachine/IdleState" method="_on_dmgbox_head_applystun"]
-[connection signal="applystun" from="Dmgbox_head" to="StateMachine/CrouchState" method="_on_dmgbox_head_applystun"]
-[connection signal="applystun" from="Dmgbox_head" to="StateMachine/WalkState" method="_on_dmgbox_head_applystun"]
-[connection signal="applystun" from="Dmgbox_head" to="StateMachine/RunState" method="_on_dmgbox_head_applystun"]
-[connection signal="applystun" from="Dmgbox_head" to="StateMachine/JumpState" method="_on_dmgbox_head_applystun"]
-[connection signal="applystun" from="Dmgbox_head" to="StateMachine/InairState" method="_on_dmgbox_head_applystun"]

@@ -20,9 +20,6 @@ _limits = [3.0, 30.0, 0.0, 30.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(30, 30), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qt646"]
-size = Vector3(46.295288, 12.310547, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_firbl"]
 size = Vector3(1, 15.52832, 1)
 
@@ -40,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016052246, -0.1237793, 0)
 shape = SubResource("BoxShape3D_clmtl")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=710571833 node_paths=PackedStringArray("PJ1", "PJ2")]
-transform = Transform3D(1, 0, 0, 0, 1, 6e-45, 0, -6e-45, 1, -0.49999988, 6.000001, 10.000004)
+transform = Transform3D(1, 0, 0, 0, 1, 6e-45, 0, -6e-45, 1, 1.3303742, 7.999999, 16.999992)
 script = ExtResource("1_qt646")
 PJ1 = NodePath("../PlayerCharacter")
 PJ2 = NodePath("../PlayerCharacter2")
@@ -58,22 +55,15 @@ ZAxis_Rot_weigth = 0.0
 transform = Transform3D(1, 0, 0, 0, 0.4787072, 0.8779747, 0, -0.8779747, 0.4787072, 0, 0, 0)
 
 [node name="PlayerCharacter" parent="." unique_id=307017552 instance=ExtResource("1_clmtl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.58705, 2, 0)
 desired_move_speed_curve = SubResource("Curve_2tsxa")
 in_air_move_speed_curve = SubResource("Curve_br1r7")
 
 [node name="PlayerCharacter2" parent="." unique_id=1507499167 instance=ExtResource("1_clmtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.247799, 2.1018414, 0)
 player_id = 2
 
 [node name="border" type="StaticBody3D" parent="." unique_id=681772395]
-
-[node name="World" type="CollisionShape3D" parent="border" unique_id=1110916533]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11590576, 5.6552734, 1.1355896)
-shape = SubResource("BoxShape3D_qt646")
-
-[node name="World2" type="CollisionShape3D" parent="border" unique_id=339900824]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21825027, 5.738777, -1.3165803)
-shape = SubResource("BoxShape3D_qt646")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="border" unique_id=183615331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.652746, 7.26416, 0)
@@ -85,4 +75,16 @@ shape = SubResource("BoxShape3D_firbl")
 
 [node name="Bullets" type="Node" parent="." unique_id=1457431491]
 
+[node name="Spawn Points" type="Node3D" parent="." unique_id=1077204252]
+
+[node name="Spawn1" type="Node3D" parent="Spawn Points" unique_id=1924319757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.358969, 15.604618, 0)
+
+[node name="Spawn2" type="Node3D" parent="Spawn Points" unique_id=318312402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.544033, 0)
+
+[node name="Spawn3" type="Node3D" parent="Spawn Points" unique_id=97210079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.648834, 18.677452, 0)
+
 [connection signal="attacked" from="PlayerCharacter" to="." method="_on_player_character_attacked"]
+[connection signal="attacked" from="PlayerCharacter2" to="." method="_on_player_character_2_attacked"]

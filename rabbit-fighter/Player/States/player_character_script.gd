@@ -74,6 +74,8 @@ var coyote_jump_on: bool = false
 @export var can_attack: bool = false
 @export var health: float = 100
 @export var times_died: float = 0
+var last_times_died : float = 0
+var invincible : bool = false
 
 #references variables
 @onready var cam_holder: Node3D = %CameraHolder
@@ -94,6 +96,10 @@ func _ready() -> void:
 	jump_cooldown = -1.0
 	nb_jumps_in_air_allowed_ref = nb_jumps_in_air_allowed
 	coyote_jump_cooldown_ref = coyote_jump_cooldown
+	
+	invincible = true
+	await get_tree().create_timer(2).timeout
+	invincible = false
 
 #double tap
 var hold_timer = 0.0
@@ -125,6 +131,8 @@ func _process(delta):
 		check_doubletap("play_char_move_backward_action_%s" %[player_id])
 	
 	attack()
+	levelctrl()
+	resetshots()
 
 
 func health_checker():
@@ -141,6 +149,7 @@ func _physics_process(_delta: float) -> void:
 	look_direction()
 	health_checker()
 	reloadcontrol()
+	death()
 
 	
 func modify_physics_properties() -> void:
@@ -202,35 +211,64 @@ func look_direction():
 			dir_fix = 0.055
 			
 
+
+#gunnnn
+var Fire_time_p :float 
+var Reload_time_p : float 
+var Clip_size_p : int 
 var dir_fix = 0.05
 signal  attacked(pos: Vector3, dir: Vector3)
 signal attackheld()
 var Firetimeout :bool = false
 var reloading:bool = false
 var shots_fired:int = 0
+@onready var gunpoint = $Model/Gun_Point
 func attack():
 
 	if Input.is_action_pressed("play_char_attack_action_%s" %[player_id]) and can_attack == true and Firetimeout == false and reloading == false:
 		Firetimeout = true
-		await get_tree().create_timer(Global.Fire_time).timeout
-		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.z))
+		await get_tree().create_timer(Fire_time_p).timeout
+		attacked.emit(gunpoint.global_position, Vector3(gunpoint.rotation.x + dir_fix, gunpoint.rotation.y, gunpoint.rotation.z), player_id)
 		shots_fired += 1
 		await get_tree().create_timer(0.1).timeout
 		attackheld.emit()
-		print("held")
 		Firetimeout = false
-			
-	if Input.is_action_just_pressed("play_char_attack_action_%s" %[player_id]) and can_attack == true and Firetimeout == false and reloading == false:
-		Firetimeout = true
-		attacked.emit($Model/Gun_Point.global_position, Vector3($Model/Gun_Point.rotation.x + dir_fix, $Model/Gun_Point.rotation.y, $Model/Gun_Point.rotation.z))
-		shots_fired += 1
-		await get_tree().create_timer(Global.Fire_time).timeout
-		Firetimeout = false
-		
+
+
 
 func reloadcontrol():
-	if shots_fired == Global.Clip_size:
+	if shots_fired == Clip_size_p:
 		reloading = true
-		await get_tree().create_timer(Global.Reload_time).timeout
+		await get_tree().create_timer(Reload_time_p).timeout
 		reloading = false
 		shots_fired = 0
+
+var last_lvl = 0
+func resetshots():
+	if Global.level_p1 >= last_lvl + 1 and player_id == 1:
+		shots_fired = 0
+		last_lvl = Global.level_p1
+
+	if Global.level_p2 >= last_lvl + 1 and player_id == 2:
+		shots_fired = 0
+		last_lvl = Global.level_p2
+func levelctrl():
+
+	if times_died >= last_times_died + 2 and player_id == 1:
+		Global.level_p2 = Global.level_p2 + 1
+		last_times_died = times_died
+
+	if times_died >= last_times_died + 2 and player_id == 2:
+		Global.level_p1 = Global.level_p1 + 1
+		last_times_died = times_died
+
+var levelcheck = 0
+var Spawnppointsplayer: Array
+func death():
+	if times_died != levelcheck:
+		Spawnppointsplayer = Global.Spawnpoints
+		levelcheck = times_died
+		invincible = true
+		position = Spawnppointsplayer.pick_random().position
+		await get_tree().create_timer(4).timeout
+		invincible = false
