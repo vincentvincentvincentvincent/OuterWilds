@@ -133,6 +133,8 @@ func _process(delta):
 	attack()
 	levelctrl()
 	resetshots()
+	gunpointctrl()
+	
 
 
 func health_checker():
@@ -222,7 +224,9 @@ signal attackheld()
 var Firetimeout :bool = false
 var reloading:bool = false
 var shots_fired:int = 0
+var gun:bool
 @onready var gunpoint = $Model/Gun_Point
+@onready var weaponctrl = $Weapon
 func attack():
 
 	if Input.is_action_pressed("play_char_attack_action_%s" %[player_id]) and can_attack == true and Firetimeout == false and reloading == false:
@@ -234,7 +238,12 @@ func attack():
 		attackheld.emit()
 		Firetimeout = false
 
+func gunpointctrl():
+	if player_id == 1:
+		Global.gunpoint1 = $Model/Gun_Point.position
 
+	if player_id == 2:
+		Global.gunpoint2 = $Model/Gun_Point.position
 
 func reloadcontrol():
 	if shots_fired == Clip_size_p:

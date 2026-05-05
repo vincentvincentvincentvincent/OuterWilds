@@ -16,7 +16,10 @@
 [ext_resource type="StyleBox" uid="uid://c50syhy1a4dmh" path="res://addons/PlayerCharacter/UI/player_character_ui_theme.tres" id="11_o6nip"]
 [ext_resource type="LabelSettings" uid="uid://d1rg1oruwidf" path="res://addons/PlayerCharacter/UI/label_font_setting.tres" id="12_8ugyt"]
 [ext_resource type="Script" uid="uid://dvji730nr7u7c" path="res://Player/Weapons/States/weapon_ak_47.gd" id="16_b46m6"]
+[ext_resource type="Script" uid="uid://crcdh2thtecer" path="res://Player/Weapons/States/weapon_knife.gd" id="18_umsbf"]
+[ext_resource type="Script" uid="uid://bc26msme7pf1w" path="res://Player/Weapons/States/weapon_punch.gd" id="19_hwwa7"]
 [ext_resource type="Script" uid="uid://bwq6xbwctjkk5" path="res://Player/weapon_controls.gd" id="19_nlpte"]
+[ext_resource type="Script" uid="uid://dfuhuapa1hvch" path="res://Player/Weapons/States/weapon_finish.gd" id="20_o6nip"]
 
 [sub_resource type="Curve" id="Curve_2tsxa"]
 _limits = [0.0, 30.0, 0.0, 60.0]
@@ -772,7 +775,14 @@ script = ExtResource("9_g1ssd")
 [node name="Weapon_Ak47" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=1110610163]
 script = ExtResource("16_b46m6")
 
-[node name="Finish" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=578001530]
+[node name="Weapon_Knife" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=1802756007]
+script = ExtResource("18_umsbf")
+
+[node name="Weapon_Punch" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=1765940402]
+script = ExtResource("19_hwwa7")
+
+[node name="Weapon_Finish" type="Node" parent="Weapon/StateMachine_Weapon" unique_id=578001530]
+script = ExtResource("20_o6nip")
 
 [connection signal="attackheld" from="." to="Weapon/StateMachine_Weapon/Weapon_Pistol" method="_on_player_character_attackheld"]
 [connection signal="attackheld" from="." to="Weapon/StateMachine_Weapon/Weapon_Ak47" method="_on_player_character_attackheld"]

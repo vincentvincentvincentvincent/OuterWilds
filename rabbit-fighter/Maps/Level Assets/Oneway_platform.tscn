@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cufj1m3stjkd3"]
+
+[ext_resource type="Script" uid="uid://f5p1gsn0unx8" path="res://Maps/Level Assets/oneway_platform.gd" id="1_wxbi5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dvsju"]
+size = Vector3(6.1260986, 1, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" unique_id=611770454]
+size = Vector3(6.1430664, 1, 1)
+script = ExtResource("1_wxbi5")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=499636164]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=467254486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0119018555, 1.9260519, 0)
+shape = SubResource("BoxShape3D_dvsju")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

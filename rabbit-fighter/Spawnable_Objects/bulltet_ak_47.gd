@@ -6,7 +6,7 @@ var direction: Vector3
 var speed: int = 700
 var brange: int = 7
 
-func setup(pos:Vector3 , Dir:Vector3):
+func setup(pos:Vector3 , Dir:Vector3, _id):
 	position = pos + Dir * 16
 	direction = Dir 
 
@@ -24,4 +24,8 @@ func _on_area_entered(area: Area3D) -> void:
 		print("hit")
 	elif "hit_body" in area:
 		area.hit_body(set_dmg_body)
+	queue_free()
+
+
+func _on_body_entered(_body: Node3D) -> void:
 	queue_free()

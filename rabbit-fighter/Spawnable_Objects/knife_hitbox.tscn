@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cr3uxo52ipmhq"]
+
+[ext_resource type="Script" uid="uid://dt4pqa5yq3wor" path="res://Spawnable_Objects/knife_hitbox.gd" id="1_lirgx"]
+
+[sub_resource type="Animation" id="Animation_13rm4"]
+resource_name = "Knife"
+length = 0.46666667
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.23333333, 1, 0, 1, 0, 0.46666667, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_es3ew"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7g0ji"]
+_data = {
+&"Knife": SubResource("Animation_13rm4"),
+&"RESET": SubResource("Animation_es3ew")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t8dn7"]
+
+[node name="Knife_hitbox" type="Area3D" unique_id=1264862801]
+script = ExtResource("1_lirgx")
+set_dmg_body = null
+set_dmg_head = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2072918490]
+active = false
+libraries/ = SubResource("AnimationLibrary_7g0ji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=486266586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009223938, 0)
+shape = SubResource("SphereShape3D_t8dn7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

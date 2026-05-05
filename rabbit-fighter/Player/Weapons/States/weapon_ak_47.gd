@@ -33,6 +33,7 @@ func _process(_delta: float) -> void:
 	if weapon_holder.current_weapon == $"." and active== false:
 		active = true
 
+
 	if !weapon_holder.current_weapon == $"." and active== true:
 		active = false
 

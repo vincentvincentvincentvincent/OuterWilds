@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Rabbit Fighter"
-run/main_scene="uid://bees6uc2jxkck"
+run/main_scene="uid://d1fkm0sktj1de"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -129,6 +129,8 @@ play_char_stun_action_2={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Attacks"
+3d_physics/layer_5="one way player 1"
+3d_physics/layer_6="one way player 2"
 
 [physics]
 

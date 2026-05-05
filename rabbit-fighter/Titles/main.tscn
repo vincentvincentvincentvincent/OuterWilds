@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://d1fkm0sktj1de"]
 
+[ext_resource type="Script" uid="uid://bwo1n6mevm0n6" path="res://Titles/main.gd" id="1_rwvkn"]
+
 [node name="Main" type="Node3D" unique_id=1891336768]
+script = ExtResource("1_rwvkn")
 
 [node name="Control" type="Control" parent="." unique_id=1831068923]
 layout_mode = 3
@@ -8,14 +11,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control" unique_id=1232708646]
+[node name="Button" type="Button" parent="Control" unique_id=930615189]
 layout_mode = 0
-offset_left = 458.0
-offset_top = 90.0
-offset_right = 498.76
-offset_bottom = 113.0
-scale = Vector2(8.375, 8.375)
-text = "Play"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+offset_left = 504.0
+offset_top = 277.0
+offset_right = 768.0
+offset_bottom = 331.0
+text = "Play
+(I will make tbhis look good later)"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

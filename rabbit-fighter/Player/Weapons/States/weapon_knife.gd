@@ -1,0 +1,36 @@
+extends State
+
+class_name Knife
+
+var state_name : String = "Pistol"
+
+@onready var gun_pos: Node3D  = $"../../../Model/Gun_Point"
+@onready var weapon_holder =  $"../.."
+@onready var play_char : CharacterBody3D = $"../../.."
+@onready var bullet_sceneL :String = "res://Spawnable_Objects/knife_hitbox.tscn"
+
+var active:bool = false
+
+
+
+var Fire_time = 0.05
+
+
+
+func _process(_delta: float) -> void:
+	if weapon_holder.current_weapon == $"." and active== false:
+		active = true
+
+
+	if !weapon_holder.current_weapon == $"." and active== true:
+		active = false
+
+
+	if active == true:
+		if play_char.player_id == 1:
+			Global.bullet_scene = bullet_sceneL
+		elif play_char.player_id == 2:
+			Global.bullet_scene2 = bullet_sceneL
+
+	if active == true: 
+		play_char.Fire_time_p = Fire_time
