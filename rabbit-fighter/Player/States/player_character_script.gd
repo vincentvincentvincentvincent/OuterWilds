@@ -240,10 +240,10 @@ func attack():
 
 func gunpointctrl():
 	if player_id == 1:
-		Global.gunpoint1 = $Model/Gun_Point.position
+		Global.gunpoint1 = $Model/Gun_Point.global_position
 
 	if player_id == 2:
-		Global.gunpoint2 = $Model/Gun_Point.position
+		Global.gunpoint2 = $Model/Gun_Point.global_position
 
 func reloadcontrol():
 	if shots_fired == Clip_size_p:

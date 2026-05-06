@@ -5,9 +5,9 @@ extends Area3D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
 @export var set_dmg_body: int = 10
-@export var set_dmg_head: int = 50
+@export var set_dmg_head: int = 20
 var direction: Vector3
-var playeridlocal = 1
+var playeridlocal: int
 
 func setup(_pos:Vector3 , _Dir:Vector3, id:int):
 	playeridlocal = id
@@ -20,7 +20,7 @@ func _physics_process(_delta: float) -> void:
 	if playeridlocal == 2:
 		position = Global.gunpoint2
 
-	$AnimationPlayer.play("Knife")
+	$AnimationPlayer.play("Punch")
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.name == "Dmgbox_head" or area.name == "Dmgbox_body":

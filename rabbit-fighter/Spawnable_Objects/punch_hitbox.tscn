@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://cr3uxo52ipmhq"]
+[gd_scene format=3 uid="uid://c6vscewx3tepo"]
 
-[ext_resource type="Script" uid="uid://dt4pqa5yq3wor" path="res://Spawnable_Objects/knife_hitbox.gd" id="1_lirgx"]
+[ext_resource type="Script" uid="uid://cbl5yvx66h0uj" path="res://Spawnable_Objects/punch_hitbox.gd" id="1_uitdk"]
 
 [sub_resource type="Animation" id="Animation_13rm4"]
 resource_name = "Knife"
-length = 0.4
+length = 0.001
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -12,6 +12,17 @@ tracks/0/path = NodePath("CollisionShape3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.2, 1, 0, 1.2, 0, 0.4, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_uitdk"]
+resource_name = "Punch"
+length = 0.76666665
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.13333334, 1, 0, 1, 0, 0.46666667, 1, 0.7, 1, 0, 0.6333333, 1, 0, 1, 0, 0.73333335, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_es3ew"]
 length = 0.001
@@ -26,14 +37,15 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7g0ji"]
 _data = {
 &"Knife": SubResource("Animation_13rm4"),
+&"Punch": SubResource("Animation_uitdk"),
 &"RESET": SubResource("Animation_es3ew")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t8dn7"]
 radius = 0.26160264
 
-[node name="Knife_hitbox" type="Area3D" unique_id=1264862801]
-script = ExtResource("1_lirgx")
+[node name="punch_hitbox" type="Area3D" unique_id=1264862801]
+script = ExtResource("1_uitdk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2072918490]
 libraries/ = SubResource("AnimationLibrary_7g0ji")

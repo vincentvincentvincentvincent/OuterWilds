@@ -2,7 +2,7 @@ extends State
 
 class_name Knife
 
-var state_name : String = "Pistol"
+var state_name : String = "Knife"
 
 @onready var gun_pos: Node3D  = $"../../../Model/Gun_Point"
 @onready var weapon_holder =  $"../.."
@@ -14,7 +14,8 @@ var active:bool = false
 
 
 var Fire_time = 0.05
-
+var Reload_time = 1 
+var clip_size_local = 1
 
 
 func _process(_delta: float) -> void:
@@ -34,3 +35,6 @@ func _process(_delta: float) -> void:
 
 	if active == true: 
 		play_char.Fire_time_p = Fire_time
+		play_char.Reload_time_p = Reload_time
+		play_char.Clip_size_p = clip_size_local
+		gun_pos.position.y = -0.37
