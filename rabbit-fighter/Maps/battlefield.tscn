@@ -3,12 +3,8 @@
 [ext_resource type="Script" uid="uid://bl88qniqe30k6" path="res://Maps/battlefield.gd" id="1_0alsi"]
 [ext_resource type="Script" uid="uid://cu6o80s0hqh58" path="res://addons/camera3d_fighting_game/Camera3DFighting.gd" id="2_3381v"]
 [ext_resource type="PackedScene" uid="uid://rndong4pradu" path="res://Player/player_character.tscn" id="3_53kh0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_wfsn3"]
-size = Vector3(46.575, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_u7a1a"]
-size = Vector3(46.6062, 1.2485352, 1)
+[ext_resource type="PackedScene" uid="uid://4sfv0fkae6p2" path="res://Gui/Gui_P1.res" id="4_53kh0"]
+[ext_resource type="PackedScene" uid="uid://c85ewtopmfqw0" path="res://Gui/Gui_p_2.res" id="5_olt8n"]
 
 [sub_resource type="Curve" id="Curve_8300j"]
 _limits = [0.0, 30.0, 0.0, 60.0]
@@ -25,18 +21,20 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_cpsul"]
 size = Vector3(1, 15.52832, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_wfsn3"]
+size = Vector3(46.575, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7a1a"]
+size = Vector3(46.6062, 1.2485352, 1)
+
+[sub_resource type="Environment" id="Environment_0alsi"]
+background_mode = 2
+glow_enabled = true
+glow_intensity = 0.46
+glow_bloom = 0.07
+
 [node name="Battlefield" type="Node3D" unique_id=1296397365]
 script = ExtResource("1_0alsi")
-
-[node name="Floor" type="MeshInstance3D" parent="." unique_id=1936151086]
-mesh = SubResource("BoxMesh_wfsn3")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=1283599105]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=1659473748]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016052246, -0.1237793, 0)
-shape = SubResource("BoxShape3D_u7a1a")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=758203377 node_paths=PackedStringArray("PJ1", "PJ2")]
 transform = Transform3D(1, 0, 0, 0, 1, 6e-45, 0, -6e-45, 1, 0.6526978, 13.000002, 16.999992)
@@ -54,9 +52,6 @@ max_topdownview_deg = 0.0
 max_tilt_deg = 6.0
 height_threshold = 6.0
 ZAxis_Rot_weigth = 0.0
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1024916657]
-transform = Transform3D(1, 0, 0, 0, 0.4787072, 0.8779747, 0, -0.8779747, 0.4787072, 0, 0, 0)
 
 [node name="PlayerCharacter" parent="." unique_id=307017552 instance=ExtResource("3_53kh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.942404, 2, 0)
@@ -77,7 +72,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.652746, 7.26416, 0)
 shape = SubResource("BoxShape3D_cpsul")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="border" unique_id=79627849]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.736788, 7.26416, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.218447, 7.26416, 0)
 shape = SubResource("BoxShape3D_cpsul")
 
 [node name="Bullets" type="Node" parent="." unique_id=1032318467]
@@ -93,22 +88,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.544033, 0)
 [node name="Platforms" type="Node3D" parent="." unique_id=56327486]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Platforms" unique_id=1962573750]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.8282, 4.7965913, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.414458, 4.7965913, 0)
 use_collision = true
 collision_mask = 0
 size = Vector3(7.3115234, 1, 1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Platforms" unique_id=174860619]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.602857, 4.7965913, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.016599, 4.7965913, 0)
 use_collision = true
 collision_mask = 0
 size = Vector3(7.3115234, 1, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Platforms" unique_id=1474164115]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5486431, 8.23957, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037614822, 8.23957, 0)
 use_collision = true
 collision_mask = 0
 size = Vector3(7.3115234, 1, 1)
+
+[node name="Gui" type="Node3D" parent="." unique_id=1729771312]
+
+[node name="World" type="Node3D" parent="." unique_id=1392117418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.013301, 4.69013, -5.016505)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=1024916657]
+transform = Transform3D(1, 0, 0, 0, 0.4787072, 0.8779747, 0, -0.8779747, 0.4787072, -4.599559, -4.69013, 5.016505)
+light_energy = 0.168
+
+[node name="Floor" type="MeshInstance3D" parent="World" unique_id=1936151086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.599559, -4.69013, 5.016505)
+mesh = SubResource("BoxMesh_wfsn3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Floor" unique_id=1283599105]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor/StaticBody3D" unique_id=1659473748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016052246, -0.1237793, 0)
+shape = SubResource("BoxShape3D_u7a1a")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=383264616]
+environment = SubResource("Environment_0alsi")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1442273904]
+
+[node name="Gui_p1" parent="Node3D" unique_id=652146938 instance=ExtResource("4_53kh0")]
+transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, -4, 0, 4, -1.7484555e-07, -44.54165, 14.148, -37.33126)
+
+[node name="Gui_P2" parent="Node3D" unique_id=1684165359 instance=ExtResource("5_olt8n")]
+transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, -4, 0, 4, -1.7484555e-07, 25.802273, 7.3287354, -37.614)
 
 [connection signal="attacked" from="PlayerCharacter" to="." method="_on_player_character_attacked"]
 [connection signal="attacked" from="PlayerCharacter2" to="." method="_on_player_character_2_attacked"]
