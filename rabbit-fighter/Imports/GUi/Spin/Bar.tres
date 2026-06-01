@@ -1,0 +1,25 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bvmt0rajw2xts"]
+
+[ext_resource type="Texture2D" uid="uid://cpqa1jghvpb4y" path="res://Imports/GUi/Spin/textures/Ucupaint Bar Color.png" id="1_arf7b"]
+[ext_resource type="Texture2D" uid="uid://c41ajtxxob5vp" path="res://Imports/GUi/Spin/textures/Ucupaint Bar Roughness.png" id="2_6ftsa"]
+[ext_resource type="Texture2D" uid="uid://dck2uko57hhmt" path="res://Imports/GUi/Spin/textures/Ucupaint Bar Normal.png" id="3_cgfik"]
+
+[resource]
+resource_name = "Bar"
+cull_mode = 2
+albedo_texture = ExtResource("1_arf7b")
+metallic = 1.0
+metallic_texture = ExtResource("2_6ftsa")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_6ftsa")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_cgfik")
+metadata/extras = {
+"yp": {
+"active_ypaint_node": "Group.001",
+"expand_content": 0.0,
+"ori_bsdf": "",
+"ori_bsdf_output_index": 0.0
+}
+}

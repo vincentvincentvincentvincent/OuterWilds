@@ -13,7 +13,7 @@ var videos: Array = ["res://Gui/Videos/pistol(2).ogv","res://Gui/Videos/ak47.ogv
 var currentvid
 var leastlvl
 
-var videosbar: Array = ["res://Gui/Videos/bar1.ogv","res://Gui/Videos/bars2.ogv","res://Gui/Videos/bars3.ogv",
+var videosbar: Array = ["res://Gui/Videos/bar1(1).ogv","res://Gui/Videos/bars2.ogv","res://Gui/Videos/bars3.ogv",
 "res://Gui/Videos/bars4.ogv", "res://Gui/Videos/bars5.ogv","res://Gui/Videos/bars6.ogv"]
 var currentvideobar
 var levelsbar
@@ -27,12 +27,9 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	levelchkr()
 	lifechkr()
-	if play_char.invincible == true:
-		currentvid = videos[5]
-		currentvideobar = videosbar[5]
-	else:
-		currentvid = videos[level]
-		currentvideobar = videosbar[levelsbar]
+
+	currentvid = videos[level]
+	currentvideobar = videosbar[levelsbar]
 
 	if level == leastlvl:
 		pass
@@ -44,7 +41,6 @@ func _physics_process(_delta: float) -> void:
 	if levelsbar == lastlevelbar:
 		pass
 	else:
-		print("888")
 		videostreamb.stop()
 		videostreamb.stream = load(currentvideobar)
 		videostreamb.play()
@@ -64,16 +60,16 @@ func lifechkr():
 	if play_char.health > 80:
 		lastlevelbar = levelsbar
 		levelsbar = 0
-	elif play_char.health > 60 and play_char.health < 80:
+	elif play_char.health > 60:
 		lastlevelbar = levelsbar
 		levelsbar = 1
-	elif play_char.health > 40 and play_char.health < 60:
+	elif play_char.health > 40 :
 		lastlevelbar = levelsbar
 		levelsbar = 2
-	elif play_char.health > 20 and play_char.health < 40:
+	elif play_char.health > 20 :
 		lastlevelbar = levelsbar
 		levelsbar = 3
-	elif play_char.health > 0 and play_char.health < 20:
+	elif play_char.health > 0 :
 		lastlevelbar = levelsbar
 		levelsbar = 4
 	elif play_char.health == 0:

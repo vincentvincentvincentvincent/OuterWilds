@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://rndong4pradu" path="res://Player/player_character.tscn" id="3_53kh0"]
 [ext_resource type="PackedScene" uid="uid://4sfv0fkae6p2" path="res://Gui/Gui_P1.res" id="4_53kh0"]
 [ext_resource type="PackedScene" uid="uid://c85ewtopmfqw0" path="res://Gui/Gui_p_2.res" id="5_olt8n"]
+[ext_resource type="PackedScene" uid="uid://dohi3lwk2cahg" path="res://Gui/scoreboard.tscn" id="6_olt8n"]
 
 [sub_resource type="Curve" id="Curve_8300j"]
 _limits = [0.0, 30.0, 0.0, 60.0]
@@ -135,6 +136,14 @@ transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, -4, 0, 4, -1.7484555e-07, -4
 
 [node name="Gui_P2" parent="Node3D" unique_id=1684165359 instance=ExtResource("5_olt8n")]
 transform = Transform3D(4, 0, 0, 0, -1.7484555e-07, -4, 0, 4, -1.7484555e-07, 25.802273, 7.3287354, -37.614)
+
+[node name="Scoreboard" parent="Node3D" unique_id=1321643096 instance=ExtResource("6_olt8n")]
+transform = Transform3D(4.3276404e-07, -3.696153e-07, -13.0199995, -0.3928442, 13.014073, -3.825045e-07, 13.014073, 0.3928442, 4.2141482e-07, -23.03904, 40.415497, -55.85983)
+scoreboardid = 1
+
+[node name="Scoreboard2" parent="Node3D" unique_id=1575526189 instance=ExtResource("6_olt8n")]
+transform = Transform3D(4.3276404e-07, -3.696153e-07, -13.0199995, -0.3928442, 13.014073, -3.825045e-07, 13.014073, 0.3928442, 4.2141482e-07, 17.626743, 40.415497, -55.85983)
+scoreboardid = 2
 
 [connection signal="attacked" from="PlayerCharacter" to="." method="_on_player_character_attacked"]
 [connection signal="attacked" from="PlayerCharacter2" to="." method="_on_player_character_2_attacked"]

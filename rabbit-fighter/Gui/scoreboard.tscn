@@ -1,0 +1,63 @@
+[gd_scene format=4 uid="uid://dohi3lwk2cahg"]
+
+[ext_resource type="Script" uid="uid://c1g0wdv5gnojb" path="res://Gui/scoreboard.gd" id="1_bb2tx"]
+[ext_resource type="Animation" uid="uid://b72uv2n6na8l3" path="res://Imports/GUi/Spin/Rollto2.res" id="2_bb2tx"]
+[ext_resource type="Material" uid="uid://bvmt0rajw2xts" path="res://Imports/GUi/Spin/Bar.tres" id="2_tnegj"]
+[ext_resource type="Animation" uid="uid://dk05isnrtj18i" path="res://Imports/GUi/Spin/Rollto3.res" id="3_tnegj"]
+[ext_resource type="Animation" uid="uid://bebjv50ri5g0t" path="res://Imports/GUi/Spin/Rollto4.res" id="4_regta"]
+[ext_resource type="Animation" uid="uid://dnqxufs1hqeqj" path="res://Imports/GUi/Spin/Rolltohash.res" id="5_y62py"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ggg7l"]
+_surfaces = [{
+"aabb": AABB(-0.95105654, -1, -1, 1.9021131, 2, 1.809017),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIABQADAAAABQACAAYAAwAHAAQAAwAFAAgAAwAIAAcACAAFAAYABwAJAAQABwAIAAkAAgAEAAkACAAGAAkAAgAJAAYA"),
+"name": "Bar",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("/38AAAAAAAD/////yGEAAP9///8AAAAA//8AAMhhAAAaz/////8AAAAAAADIYQAAAAD//8hhAAAazwAA//8AAOQwAAD//wAA5DD/////AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_533t5"]
+resource_name = "Spin_Cylinder_001"
+_surfaces = [{
+"aabb": AABB(-0.95105654, -1, -1, 1.9021131, 2, 1.809017),
+"attribute_data": PackedByteArray("////f8zMAAD//wAAzMz/f8zM/3+ZmQAAzMwAAJmZ/3+Zmf9/ZmYAAJmZAABmZv9/HGSz8f8/joJuegKt4huz8ZEFAq1mZv9/MzMAAGZmAAAzM/9/MzP/fwAAAAAzMwAAAAD/f5CFAq1t+gKt/7+OguKbs/Ec5LPx"),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADQAMAA8ADQAPABAAEQASABMAEQAUABIAFQAWABcAFQAYABYAGQAaABsAGgAZABwAGgAcAB0A"),
+"material": ExtResource("2_tnegj"),
+"name": "Bar",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("/38AAAAAZeb/////yGFl5v9///8AAGXm//8AAMhhZeb//wAAyGEysxrP/////zKz/////8hhMrMazwAA//8ysxrPAAD//wCA5DD/////AIAaz/////8AgOQwAAD//wCAGs///////7//f///AAD/v//////IYf+/5DD//////78AAP//yGH/v+QwAAD//zKzAAD//8hhMrPkMP////8yswAAAADIYTKzAAAAAMhhZeb/f///AABl5gAA///IYWXm/38AAAAAZeYAAAAAyGH/P///AADIYf8//38AAAAA/z/kMAAA////PxrPAAD///8//38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///////f////3////9/////f////3//f////3////9/////f////3////9/////f////3///wAA/38AAP9/AAD/fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ggg7l")
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dkpsy"]
+_data = {
+&"Rollto2": ExtResource("2_bb2tx"),
+&"Rollto3": ExtResource("3_tnegj"),
+&"Rollto4": ExtResource("4_regta"),
+&"Rolltohash": ExtResource("5_y62py")
+}
+
+[node name="Scoreboard" type="Node3D" unique_id=1321643096]
+script = ExtResource("1_bb2tx")
+
+[node name="Spin" type="Node3D" parent="." unique_id=1152943364]
+
+[node name="Cylinder" type="MeshInstance3D" parent="Spin" unique_id=455099133]
+transform = Transform3D(0.9442158, -2.438405e-09, 0.3293274, -0.3293274, -1.4395358e-08, 0.9442158, 2.438405e-09, -1, -1.4395358e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_533t5")
+metadata/extras = {
+"yp_decal": {}
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spin" unique_id=1379828208]
+libraries/ = SubResource("AnimationLibrary_dkpsy")
