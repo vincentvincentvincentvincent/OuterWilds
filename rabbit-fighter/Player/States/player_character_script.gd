@@ -201,7 +201,7 @@ func tween_model_height(state_model_height : float) -> void:
 	model_tween.finished.connect(Callable(model_tween, "kill"))
 
 func look_direction():
-	if is_on_floor() and can_attack == true:
+	if can_attack == true:
 		if Input.is_action_just_pressed("play_char_move_forward_action_%s" %[player_id]):
 			var rotate_forward_tween = create_tween()
 			rotate_forward_tween.tween_property(%Model, "rotation:y", rotation.y + deg_to_rad(-180), 0.3)

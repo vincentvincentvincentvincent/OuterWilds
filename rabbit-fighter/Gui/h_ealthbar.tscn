@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dgtjtnigcrxt7"]
+
+[ext_resource type="Script" uid="uid://3c0q4mmwbadx" path="res://Gui/h_ealthbar.gd" id="1_ak813"]
+
+[node name="HEalthbar" type="Node3D" unique_id=1753001078]
+script = ExtResource("1_ak813")
+
+[node name="SubViewport2" type="SubViewport" parent="." unique_id=100402756]
+size = Vector2i(1924, 901)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport2" unique_id=2092858488]
+offset_right = 40.0
+offset_bottom = 40.0
+speed_scale = 1.1
+loop = true
